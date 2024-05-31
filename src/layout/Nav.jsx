@@ -31,10 +31,10 @@ const Nav = () => {
     };
   }, []);
   return (
-    <div>
+    <div className="">
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
-        <div className="flex flex-wrap items-center justify-between mx-auto py-4 px-2 md:px-4">
-          <Link to="/" className="flex items-center  rtl:space-x-reverse">
+        <div className="flex flex-wrap items-center justify-between mx-auto py-4 px-2">
+          <Link to="/" className="flex items-center rtl:space-x-reverse">
             <img
               src="https://flowbite.com/docs/images/logo.svg"
               className="h-8"
@@ -44,7 +44,7 @@ const Nav = () => {
               Destined Affinity
             </span>
           </Link>
-          <div className="flex items-center md:order-2  rtl:space-x-reverse">
+          <div className="flex items-center md:order-2  md:space-x-0 rtl:space-x-reverse">
             {user ? (
               <div className="relative" ref={menuRef}>
                 <button
@@ -61,7 +61,7 @@ const Nav = () => {
                 </button>
 
                 {isDropdownOpen && (
-                  <div className="absolute -right-14 md:right-0 z-50 mt-2 w-48 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
+                  <div className="absolute -right-10 md:right-0 z-50 mt-2 w-48 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
                     <div className="px-4 py-3">
                       <span className="block text-sm text-gray-900 dark:text-white">
                         {user.displayName}

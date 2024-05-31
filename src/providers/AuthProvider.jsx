@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { app } from "../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -48,26 +49,26 @@ const AuthProvider = ({ children }) => {
   // Get token from server
 
   // save user
-  //   const saveUser = async user => {
-  //     const currentUser = {
-  //       email: user?.email,
-  //       role: 'guest',
-  //       status: 'Verified',
-  //     }
-  //     const { data } = await axios.put(
-  //       `${import.meta.env.VITE_API_URL}/user`,
-  //       currentUser
-  //     )
-  //     return data
-  //   }
+  const saveUser = async (user) => {
+    const currentUser = {
+      email: user?.email,
+      role: "guest",
+      status: "regular",
+    };
+    const { data } = await axios.put(
+      `${import.meta.env.VITE_API_URL}/users`,
+      currentUser
+    );
+    return data;
+  };
 
   // onAuthStateChange
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      //   if (currentUser) {
-      //     saveUser(currentUser)
-      //   }
+      if (currentUser) {
+        saveUser(currentUser);
+      }
       setLoading(false);
     });
     return () => {
