@@ -3,12 +3,19 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { FcGoogle } from "react-icons/fc";
+import { useEffect } from "react";
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state || "/";
-  const { signInWithGoogle, signIn, loading, setLoading } = useAuth();
+  const { signInWithGoogle, signIn, user, loading, setLoading } = useAuth();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [navigate, user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,6 +46,7 @@ const Login = () => {
     } catch (err) {
       console.log(err);
       toast.error(err.message);
+      setLoading(false);
     }
   };
 

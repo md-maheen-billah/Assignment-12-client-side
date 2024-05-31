@@ -83,6 +83,7 @@ const AuthProvider = ({ children }) => {
     signIn,
     signInWithGoogle,
     logOut,
+    setUser,
     updateUserProfile,
   };
   return (

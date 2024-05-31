@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { FcGoogle } from "react-icons/fc";
 import { imageUpload } from "../../utils";
+import { useEffect } from "react";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -12,8 +13,16 @@ const Register = () => {
     signInWithGoogle,
     updateUserProfile,
     loading,
+    setUser,
+    user,
     setLoading,
   } = useAuth();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [navigate, user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,11 +43,18 @@ const Register = () => {
 
       // 3. Save username and photo in firebase
       await updateUserProfile(name, image_url);
+      setUser({
+        ...result?.user,
+        photoURL: image_url,
+        displayName: name,
+        email: email,
+      });
       navigate("/");
       toast.success("Signup Successful");
     } catch (err) {
       console.log(err);
       toast.error(err.message);
+      setLoading(false);
     }
   };
 
