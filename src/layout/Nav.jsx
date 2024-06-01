@@ -2,9 +2,11 @@ import "flowbite";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { useEffect, useRef, useState } from "react";
+import useRole from "../hooks/useRole";
 
 const Nav = () => {
   const { user, logOut } = useAuth();
+  const [role] = useRole();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const menuRef = useRef(null);
   const handleButtonClick = () => {
@@ -190,20 +192,39 @@ const Nav = () => {
                 </NavLink>
               </li>
               {user && (
-                <li>
-                  <NavLink
-                    to="/dashboard"
-                    className={({ isActive, isPending }) =>
-                      isPending
-                        ? "pending"
-                        : isActive
-                        ? "block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
-                        : "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                    }
-                  >
-                    Dashboard
-                  </NavLink>
-                </li>
+                <>
+                  {role === "admin" ? (
+                    <li>
+                      <NavLink
+                        to="/dashboard/admin-dashboard"
+                        className={({ isActive, isPending }) =>
+                          isPending
+                            ? "pending"
+                            : isActive
+                            ? "block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                            : "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                        }
+                      >
+                        Dashboard
+                      </NavLink>
+                    </li>
+                  ) : (
+                    <li>
+                      <NavLink
+                        to="/dashboard/edit-biodata"
+                        className={({ isActive, isPending }) =>
+                          isPending
+                            ? "pending"
+                            : isActive
+                            ? "block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                            : "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                        }
+                      >
+                        Dashboard
+                      </NavLink>
+                    </li>
+                  )}
+                </>
               )}
             </ul>
           </div>

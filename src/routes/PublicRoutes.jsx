@@ -6,7 +6,13 @@ import AboutUs from "../pages/AboutUs/AboutUs";
 import ContatcUs from "../pages/ContactUs/ContatcUs";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
-import Dashboard from "../pages/Dashboard/Dashboard";
+import PrivateRoute from "./PrivateRoute";
+import EditBiodata from "../pages/Dashboard/Pages/EditBiodata/EditBiodata";
+import ViewBiodata from "../pages/Dashboard/Pages/ViewBiodata/ViewBiodata";
+import ContactRequest from "../pages/Dashboard/Pages/ContactRequest/ContactRequest";
+import FavouritesBiodata from "../pages/Dashboard/Pages/FavouritesBiodata/FavouritesBiodata";
+import DashboardLayout from "../layout/DashboardLayout";
+import AdminDashboard from "../pages/Dashboard/Pages/AdminDashboard/AdminDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -37,9 +43,55 @@ export const router = createBrowserRouter([
         path: "register",
         element: <Register></Register>,
       },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
+    children: [
       {
-        path: "dashboard",
-        element: <Dashboard></Dashboard>,
+        path: "edit-biodata",
+        element: (
+          <PrivateRoute>
+            <EditBiodata></EditBiodata>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "view-biodata",
+        element: (
+          <PrivateRoute>
+            <ViewBiodata></ViewBiodata>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "contact-request",
+        element: (
+          <PrivateRoute>
+            <ContactRequest></ContactRequest>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "favourites-biodata",
+        element: (
+          <PrivateRoute>
+            <FavouritesBiodata></FavouritesBiodata>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "admin-dashboard",
+        element: (
+          <PrivateRoute>
+            <AdminDashboard></AdminDashboard>
+          </PrivateRoute>
+        ),
       },
     ],
   },
