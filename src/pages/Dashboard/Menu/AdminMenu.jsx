@@ -10,6 +10,16 @@ const AdminMenu = () => {
         address="admin-dashboard"
       />
       <MenuItem icon={FaUserCog} label="Manage Users" address="manage-users" />
+      <MenuItem
+        icon={FaUserCog}
+        label="Premium Requests"
+        address="premium-requests"
+      />
+      <MenuItem
+        icon={FaUserCog}
+        label="Contact Requests"
+        address="contact-requests"
+      />
     </>
   );
 };
