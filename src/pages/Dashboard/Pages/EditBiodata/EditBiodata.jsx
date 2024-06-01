@@ -1,17 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../../../hooks/useAuth";
 import { MdPhotoCamera } from "react-icons/md";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { imageUpload } from "../../../../utils";
+import LoadingSpinner from "../../../../components/LoadingSpinner";
 
 const EditBiodata = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  console.log(user.photoURL);
+
+  const {
+    data: biodata = {},
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["biodata", user?.email],
+    queryFn: async () => {
+      const { data } = await axiosSecure(`/biodata/${user?.email}`);
+      return data;
+    },
+  });
+
+  const { mutateAsync } = useMutation({
+    mutationFn: async (bdata) => {
+      const { data } = await axiosSecure.put("/biodata", bdata);
+      return data;
+    },
+    onSuccess: () => {
+      toast.success("Biodata Updated Successfully!");
+    },
+  });
+
   const [age, setAge] = useState(18);
-  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [sex, setSex] = useState("");
+  const [permanentDivision, setPermanentDivision] = useState("");
+  const [presentDivision, setPresentDivision] = useState("");
+  const [race, setRace] = useState("");
   const [height, setHeight] = useState(137);
   const [weight, setWeight] = useState(40);
   const [occupation, setOccupation] = useState("Accountant");
@@ -71,23 +97,6 @@ const EditBiodata = () => {
     "Writer",
   ];
 
-  const [imagePreview, setImagePreview] = useState(user.photoURL || "");
-  const [imageFile, setImageFile] = useState(null);
-
-  console.log(imageFile);
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result);
-      };
-      reader.readAsDataURL(file);
-      setImageFile(file);
-    }
-  };
-
   const handleOccupationChange = (e) => {
     setOccupation(e.target.value);
   };
@@ -110,20 +119,88 @@ const EditBiodata = () => {
     setHeight(e.target.value);
   };
 
+  const ages = Array.from({ length: 53 }, (_, i) => i + 18);
+
+  const sexs = ["Male", "Female"];
+
+  const races = [
+    "Bengali",
+    "Rohingya",
+    "Chakma",
+    "Bihari",
+    "Marma",
+    "Garo",
+    "Santal",
+    "Khasi",
+    "Tripuri",
+    "Mro",
+    "Rakhine",
+    "Barua",
+    "Bawm",
+  ];
+
+  const divisions = [
+    "Barisal",
+    "Chattogram",
+    "Dhaka",
+    "Khulna",
+    "Mymensingh",
+    "Rajshahi",
+    "Rangpur",
+    "Sylhet",
+  ];
+
+  const [dateOfBirth, setDateOfBirth] = useState("");
+
   const handleDateChange = (e) => {
     setDateOfBirth(e.target.value);
   };
-  const ages = Array.from({ length: 53 }, (_, i) => i + 18);
 
-  const { mutateAsync } = useMutation({
-    mutationFn: async (bdata) => {
-      const { data } = await axiosSecure.put("/biodata", bdata);
-      return data;
-    },
-    onSuccess: () => {
-      toast.success("Room Added Successfully!");
-    },
-  });
+  const [imagePreview, setImagePreview] = useState("");
+  const [imageFile, setImageFile] = useState(null);
+
+  console.log(imageFile);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+      setImageFile(file);
+    }
+  };
+  useEffect(() => {
+    if (biodata.email) {
+      const [min, max] = biodata.expectedPartnerAge.split("-").map(Number);
+      const [min1, max1] = biodata.expectedPartnerHeight.split("-").map(Number);
+      const [min2, max2] = biodata.expectedPartnerWeight.split("-").map(Number);
+      setMinAge(min);
+      setMaxAge(max);
+      setMinHeight(min1);
+      setMaxHeight(max1);
+      setMinWeight(min2);
+      setMaxWeight(max2);
+      setAge(biodata.age);
+      setHeight(biodata.height);
+      setWeight(biodata.weight);
+      setDateOfBirth(biodata.dateOfBirth);
+      setOccupation(biodata.occupation);
+      setSex(biodata.sex);
+      setRace(biodata.race);
+      setPermanentDivision(biodata.permanentDivision);
+      setPresentDivision(biodata.presentDivision);
+      setImagePreview(biodata.image);
+    }
+  }, [biodata]);
+
+  useEffect(() => {
+    if (!biodata?.image) {
+      setImagePreview(`${user?.photoURL}`);
+    }
+  }, [biodata, user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -131,12 +208,14 @@ const EditBiodata = () => {
     const race = form.race.value;
     const name = form.name.value;
     const sex = form.sex.value;
+    const fname = form.fname.value;
+    const mname = form.mname.value;
     const permanentDivision = form.permanentDivision.value;
     const presentDivision = form.presentDivision.value;
     const mobile = form.mobile.value;
     const email = user?.email;
     const imagesel = form.image.files[0];
-    const imageu = `${user.photoURL}`;
+    const imageu = biodata?.image ? `${biodata.image}` : `${user.photoURL}`;
 
     try {
       const imageaa = imagesel ? await imageUpload(imagesel) : imageu;
@@ -156,6 +235,8 @@ const EditBiodata = () => {
         expectedPartnerWeight,
         mobile,
         email,
+        fname,
+        mname,
         image: imageaa,
       };
       console.table(bdata);
@@ -167,7 +248,7 @@ const EditBiodata = () => {
       toast.error(err.message);
     }
   };
-
+  if (isLoading) return <LoadingSpinner />;
   return (
     <div>
       <div
@@ -223,7 +304,11 @@ const EditBiodata = () => {
                 type="text"
                 id="name"
                 name="name"
-                defaultValue={user?.displayName}
+                defaultValue={
+                  biodata?.name !== undefined && biodata?.name !== ""
+                    ? biodata.name
+                    : user?.displayName
+                }
                 required
                 placeholder="Enter Name"
               />
@@ -237,6 +322,7 @@ const EditBiodata = () => {
                   className="mt-2   p-2 rounded-md w-full bg-whiteM"
                   id="age"
                   name="age"
+                  value={age}
                   placeholder="Select Age"
                   onChange={(e) => setAge(e.target.value)}
                   required
@@ -256,10 +342,15 @@ const EditBiodata = () => {
                   className="mt-2   p-2 rounded-md w-full bg-whiteM"
                   id="sex"
                   name="sex"
+                  value={sex}
+                  onChange={(e) => setSex(e.target.value)}
                   required
                 >
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
+                  {sexs.map((sex) => (
+                    <option key={sex} value={sex}>
+                      {sex}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -313,7 +404,7 @@ const EditBiodata = () => {
                 type="date"
                 id="dob"
                 name="dob"
-                value={dateOfBirth}
+                defaultValue={biodata.dateOfBirth}
                 onChange={handleDateChange}
                 required
                 className="mt-2   p-2 rounded-md w-full bg-whiteM"
@@ -348,22 +439,16 @@ const EditBiodata = () => {
               <select
                 id="race"
                 name="race"
+                value={race}
+                onChange={(e) => setRace(e.target.value)}
                 className="mt-2   p-2 rounded-md w-full bg-whiteM"
                 required
               >
-                <option value="Barua">Barua</option>
-                <option value="Bawm">Bawm</option>
-                <option value="Bengali">Bengali</option>
-                <option value="Bihari">Bihari</option>
-                <option value="Chakma">Chakma</option>
-                <option value="Garo">Garo</option>
-                <option value="Khasi">Khasi</option>
-                <option value="Marma">Marma</option>
-                <option value="Mro">Mro</option>
-                <option value="Rakhine">Rakhine</option>
-                <option value="Rohingya">Rohingya</option>
-                <option value="Santal">Santal</option>
-                <option value="Tripuri">Tripuri</option>
+                {races.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -378,17 +463,16 @@ const EditBiodata = () => {
               <select
                 id="presentDivision"
                 name="presentDivision"
+                value={presentDivision}
+                onChange={(e) => setPresentDivision(e.target.value)}
                 required
                 className="mt-2   p-2 rounded-md w-full bg-whiteM"
               >
-                <option value="Barisal">Barisal</option>
-                <option value="Chattogram">Chattogram</option>
-                <option value="Dhaka">Dhaka</option>
-                <option value="Khulna">Khulna</option>
-                <option value="Mymensingh">Mymensingh</option>
-                <option value="Rajshahi">Rajshahi</option>
-                <option value="Rangpur">Rangpur</option>
-                <option value="Sylhet">Sylhet</option>
+                {divisions.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="lg:w-1/2">
@@ -401,17 +485,16 @@ const EditBiodata = () => {
               <select
                 id="permanentDivision"
                 name="permanentDivision"
+                value={permanentDivision}
+                onChange={(e) => setPermanentDivision(e.target.value)}
                 className="mt-2   p-2 rounded-md w-full bg-whiteM"
                 required
               >
-                <option value="Barisal">Barisal</option>
-                <option value="Chattogram">Chattogram</option>
-                <option value="Dhaka">Dhaka</option>
-                <option value="Khulna">Khulna</option>
-                <option value="Mymensingh">Mymensingh</option>
-                <option value="Rajshahi">Rajshahi</option>
-                <option value="Rangpur">Rangpur</option>
-                <option value="Sylhet">Sylhet</option>
+                {divisions.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -425,6 +508,7 @@ const EditBiodata = () => {
                 type="text"
                 id="fname"
                 name="fname"
+                defaultValue={biodata.fname}
                 required
                 placeholder="Enter Father's Name"
               />
@@ -438,6 +522,7 @@ const EditBiodata = () => {
                 type="text"
                 id="mname"
                 name="mname"
+                defaultValue={biodata.mname}
                 required
                 placeholder="Enter Mother's Name"
               />
@@ -568,6 +653,7 @@ const EditBiodata = () => {
                 className="mt-2  p-2 rounded-md w-full bg-whiteM"
                 type="text"
                 id="mobile"
+                defaultValue={biodata.mobile}
                 name="mobile"
                 placeholder="Enter Mobile Number"
                 required
