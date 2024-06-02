@@ -8,13 +8,13 @@ import { imageUpload } from "../../../../utils";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
 
 const EditBiodata = () => {
-  const { user } = useAuth();
+  const { user, updateUserProfile } = useAuth();
   const axiosSecure = useAxiosSecure();
 
   const {
     data: biodata = {},
-    refetch,
     isLoading,
+    refetch,
   } = useQuery({
     queryKey: ["biodata", user?.email],
     queryFn: async () => {
@@ -29,6 +29,7 @@ const EditBiodata = () => {
       return data;
     },
     onSuccess: () => {
+      refetch();
       toast.success("Biodata Updated Successfully!");
     },
   });
@@ -219,12 +220,13 @@ const EditBiodata = () => {
 
     try {
       const imageaa = imagesel ? await imageUpload(imagesel) : imageu;
+      await updateUserProfile(name, imageaa);
       const bdata = {
         name,
-        age,
+        age: parseFloat(age),
         sex,
-        height,
-        weight,
+        height: parseFloat(height),
+        weight: parseFloat(weight),
         dateOfBirth,
         occupation,
         race,

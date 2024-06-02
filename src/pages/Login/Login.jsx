@@ -4,8 +4,10 @@ import toast from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { FcGoogle } from "react-icons/fc";
 import { useEffect } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Login = () => {
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state || "/";
@@ -26,8 +28,12 @@ const Login = () => {
     try {
       setLoading(true);
       // 1. sign in user
-      await signIn(email, password);
-      navigate(from);
+      const result = await signIn(email, password);
+      const { data } = await axiosSecure.post(`/jwt`, {
+        email: result?.user?.email,
+      });
+      console.log(data);
+      navigate(from, { replace: true });
       toast.success("Signup Successful");
     } catch (err) {
       console.log(err);
@@ -39,9 +45,12 @@ const Login = () => {
   // handle google signin
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithGoogle();
-
-      navigate(from);
+      const result = await signInWithGoogle();
+      const { data } = await axiosSecure.post(`/jwt`, {
+        email: result?.user?.email,
+      });
+      console.log(data);
+      navigate(from, { replace: true });
       toast.success("Signup Successful");
     } catch (err) {
       console.log(err);

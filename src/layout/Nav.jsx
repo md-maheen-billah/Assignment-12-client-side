@@ -6,6 +6,7 @@ import useRole from "../hooks/useRole";
 
 const Nav = () => {
   const { user, logOut } = useAuth();
+
   const [role] = useRole();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const menuRef = useRef(null);
@@ -32,6 +33,7 @@ const Nav = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
   return (
     <div className="">
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
