@@ -5,9 +5,11 @@ import { TbFidgetSpinner } from "react-icons/tb";
 import { FcGoogle } from "react-icons/fc";
 import { imageUpload } from "../../utils";
 import { useEffect } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Register = () => {
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
   const {
     createUser,
     signInWithGoogle,
@@ -50,6 +52,10 @@ const Register = () => {
         email: email,
       });
       navigate("/");
+      const { data } = await axiosSecure.post(`/jwt`, {
+        email: result?.user?.email,
+      });
+      console.log(data);
       toast.success("Signup Successful");
     } catch (err) {
       console.log(err);
@@ -61,8 +67,11 @@ const Register = () => {
   // handle google signin
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithGoogle();
-
+      const result = await signInWithGoogle();
+      const { data } = await axiosSecure.post(`/jwt`, {
+        email: result?.user?.email,
+      });
+      console.log(data);
       navigate("/");
       toast.success("Signup Successful");
     } catch (err) {
