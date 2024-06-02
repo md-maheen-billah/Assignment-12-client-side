@@ -18,6 +18,7 @@ import RequestContact from "../pages/Dashboard/Pages/RequestContact/RequestConta
 import ManageUsers from "../pages/Dashboard/Pages/ManageUsers/ManageUsers";
 import PremiumRequests from "../pages/Dashboard/Pages/PremiumRequests/PremiumRequests";
 import ContactRequests from "../pages/Dashboard/Pages/ContactRequests/ContactRequests";
+import BiodataDetails from "../pages/BiodataDetails/BiodataDetails";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,14 @@ export const router = createBrowserRouter([
       {
         path: "register",
         element: <Register></Register>,
+      },
+      {
+        path: "/biodata-details/:id",
+        element: (
+          <PrivateRoute>
+            <BiodataDetails></BiodataDetails>
+          </PrivateRoute>
+        ),
       },
     ],
   },

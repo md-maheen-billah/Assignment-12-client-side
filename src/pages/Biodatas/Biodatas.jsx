@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import { Link } from "react-router-dom";
 
 const Biodatas = () => {
   const axiosCommon = useAxiosCommon();
@@ -25,9 +26,11 @@ const Biodatas = () => {
             <p>{item.permanentDivision}</p>
             <p>{item.age}</p>
             <p>{item.occupation}</p>
-            <button className="px-4 py-2 bg-slate-700 text-white">
-              View Profile
-            </button>
+            <Link to={`/biodata-details/${item.biodataId}`}>
+              <button className="px-4 py-2 bg-slate-700 text-white">
+                View Profile
+              </button>
+            </Link>
           </div>
         ))}
       </div>
