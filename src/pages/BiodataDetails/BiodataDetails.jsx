@@ -54,7 +54,7 @@ const BiodataDetails = () => {
     },
     enabled:
       status === "premium" ||
-      access.biodataId === biodata.biodataId ||
+      access.biodataId === parseFloat(id) ||
       role === "admin" ||
       request?.status === "approved", // Query will only run if status is "premium"
   });
@@ -70,12 +70,13 @@ const BiodataDetails = () => {
     },
   });
 
-  const handleRequest = async (id) => {
+  const handleRequest = async (biodata) => {
     console.log(id);
     const status = "pending";
     try {
       const rdata = {
-        biodataId: id,
+        biodataId: biodata.biodataId,
+        name: biodata.name,
         email: user?.email,
         status,
       };
@@ -96,7 +97,7 @@ const BiodataDetails = () => {
       <img className="w-20" src={biodata.image} alt="" />
       <p>{biodata.name}</p>
       {status === "premium" ||
-      access.biodataId === biodata.biodataId ||
+      access.biodataId === parseFloat(id) ||
       role === "admin" ||
       request?.status === "approved" ? (
         <>
@@ -106,7 +107,7 @@ const BiodataDetails = () => {
       ) : (
         <>
           <button
-            onClick={() => handleRequest(biodata.biodataId)}
+            onClick={() => handleRequest(biodata)}
             className="px-4 py-2 bg-slate-700 text-white"
           >
             {request?.status ? `${request.status}` : "Show Contact Info"}
