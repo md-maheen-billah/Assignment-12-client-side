@@ -23,7 +23,7 @@ const EditBiodata = () => {
     },
   });
 
-  const { mutateAsync } = useMutation({
+  const { mutateAsync: mutateBdata } = useMutation({
     mutationFn: async (bdata) => {
       const { data } = await axiosSecure.put("/biodata", bdata);
       return data;
@@ -31,6 +31,19 @@ const EditBiodata = () => {
     onSuccess: () => {
       refetch();
       toast.success("Biodata Updated Successfully!");
+    },
+  });
+
+  const { mutateAsync: mutateUserData } = useMutation({
+    mutationFn: async (udata) => {
+      const { data } = await axiosSecure.put(
+        `/users-update/${user?.email}`,
+        udata
+      );
+      return data;
+    },
+    onSuccess: () => {
+      refetch();
     },
   });
 
@@ -242,9 +255,13 @@ const EditBiodata = () => {
         image: imageaa,
       };
       console.table(bdata);
+      const udata = {
+        name,
+      };
 
       //   Post request to server
-      await mutateAsync(bdata);
+      await mutateUserData(udata);
+      await mutateBdata(bdata);
     } catch (err) {
       console.log(err);
       toast.error(err.message);
