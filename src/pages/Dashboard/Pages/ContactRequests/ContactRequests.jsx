@@ -4,10 +4,11 @@ import toast from "react-hot-toast";
 
 const ContactRequests = () => {
   const axiosSecure = useAxiosSecure();
+  const status = "pending";
   const { data: requests = [], refetch } = useQuery({
     queryKey: ["requests"],
     queryFn: async () => {
-      const { data } = await axiosSecure(`/requested-access-dashboard`);
+      const { data } = await axiosSecure(`/requested-access-dashb/${status}`);
       return data;
     },
   });
