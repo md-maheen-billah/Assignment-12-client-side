@@ -2,10 +2,11 @@ import { Link, useParams } from "react-router-dom";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import useStatus from "../../hooks/useStatus";
 import useRole from "../../hooks/useRole";
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const BiodataDetails = () => {
   const { user } = useAuth();
@@ -59,12 +60,45 @@ const BiodataDetails = () => {
   });
   console.log(biodatap);
 
+  const { mutateAsync } = useMutation({
+    mutationFn: async (fdata) => {
+      const { data } = await axiosSecure.post("/favorites", fdata);
+      return data;
+    },
+    onSuccess: () => {
+      toast.success("Added to Favorites!");
+    },
+  });
+
+  const handleAddFavorite = async () => {
+    const fdata = {
+      name: biodata.name,
+      biodataId: biodata.biodataId,
+      permanentDivision: biodata.permanentDivision,
+      occupation: biodata.occupation,
+      favorite_email: user?.email,
+    };
+    try {
+      //   Post request to server
+      await mutateAsync(fdata);
+    } catch (err) {
+      console.log(err);
+      toast.error("Already Added to Favorites");
+    }
+  };
+
   if (isLoading) return <LoadingSpinner />;
   return (
     <div>
       <h2>Biodata Details</h2>
       <img className="w-20" src={biodata.image} alt="" />
       <p>{biodata.name}</p>
+      <button
+        onClick={handleAddFavorite}
+        className="px-4 py-2 bg-blue-700 text-white"
+      >
+        Add to Favorite
+      </button>
       {status === "premium" ||
       access.biodataId === parseFloat(id) ||
       role === "admin" ||
