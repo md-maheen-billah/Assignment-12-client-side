@@ -2,10 +2,9 @@ import { Link, useParams } from "react-router-dom";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import useStatus from "../../hooks/useStatus";
 import useRole from "../../hooks/useRole";
-import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 
 const BiodataDetails = () => {
@@ -35,7 +34,7 @@ const BiodataDetails = () => {
 
   console.log(access);
 
-  const { data: request = {}, refetch } = useQuery({
+  const { data: request = {} } = useQuery({
     queryKey: ["request", id, user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure(
@@ -60,38 +59,6 @@ const BiodataDetails = () => {
   });
   console.log(biodatap);
 
-  const { mutateAsync } = useMutation({
-    mutationFn: async (rdata) => {
-      const { data } = await axiosSecure.post("/requested-access", rdata);
-      return data;
-    },
-    onSuccess: () => {
-      refetch();
-      toast.success("Requested Access Successfully!");
-    },
-    cleanup: () => QueryClient.invalidateQueries(["biodatap", id]),
-  });
-
-  const handleRequest = async (biodata) => {
-    console.log(id);
-    const status = "pending";
-    try {
-      const rdata = {
-        biodataId: biodata.biodataId,
-        name: biodata.name,
-        email: user?.email,
-        status,
-      };
-      console.table(rdata);
-
-      //   Post request to server
-      await mutateAsync(rdata);
-    } catch (err) {
-      console.log(err);
-      toast.error(err.message);
-    }
-  };
-
   if (isLoading) return <LoadingSpinner />;
   return (
     <div>
@@ -108,18 +75,15 @@ const BiodataDetails = () => {
         </>
       ) : (
         <>
-          <button
-            onClick={() => handleRequest(biodata)}
-            className="px-4 py-2 bg-slate-700 text-white"
-          >
-            {request?.status ? `${request.status}` : "Show Contact Info"}
-          </button>
-
-          <Link to={`/payment/${biodata.biodataId}`}>
-            <button className="px-4 py-2 bg-red-700 text-white">
-              Show Contact Info
-            </button>
-          </Link>
+          {request?.status === "pending" ? (
+            "Please Wait For Admin Approval"
+          ) : (
+            <Link to={`/payment/${biodata.biodataId}`}>
+              <button className="px-4 py-2 bg-red-700 text-white">
+                Show Contact Info
+              </button>
+            </Link>
+          )}
         </>
       )}
     </div>

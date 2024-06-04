@@ -12,6 +12,7 @@ import {
 import { createContext, useEffect, useState } from "react";
 import { app } from "../firebase/firebase.config";
 import axios from "axios";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -19,6 +20,7 @@ const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const queryClient = useQueryClient();
   const [loading, setLoading] = useState(true);
 
   const createUser = (email, password) => {
@@ -37,11 +39,19 @@ const AuthProvider = ({ children }) => {
   };
 
   const logOut = async () => {
-    axios
-      .post(`${import.meta.env.VITE_API_URL}/logout`, user, {
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL}/logout`, user, {
         withCredentials: true,
-      })
-      .then(() => {});
+      });
+
+      queryClient.clear();
+
+      setUser(null);
+    } catch (error) {
+      console.error("Logout error:", error);
+      // Handle error appropriately
+    }
+
     return signOut(auth);
   };
 
