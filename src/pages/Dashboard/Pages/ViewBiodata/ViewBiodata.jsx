@@ -44,12 +44,16 @@ const ViewBiodata = () => {
   return (
     <div>
       <h2>View Biodata</h2>
-      <button
-        onClick={handlePremium}
-        className="px-4 py-2 bg-slate-700 text-white"
-      >
-        Request Premium
-      </button>
+      {status === "premium" ? (
+        "Premium Member"
+      ) : (
+        <button
+          onClick={handlePremium}
+          className="px-4 py-2 bg-slate-700 text-white"
+        >
+          Request Premium
+        </button>
+      )}
     </div>
   );
 };

@@ -7,12 +7,15 @@ import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = ({ rdata }) => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
+  const [processing, setProcessing] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
@@ -40,7 +43,7 @@ const Checkout = ({ rdata }) => {
   const handleSubmit = async (event) => {
     // Block native form submission.
     event.preventDefault();
-
+    setProcessing(true);
     if (!stripe || !elements) {
       // Stripe.js has not loaded yet. Make sure to disable
       // form submission until Stripe.js has loaded.
@@ -65,6 +68,7 @@ const Checkout = ({ rdata }) => {
     if (error) {
       console.log("[error]", error);
       setError(error.message);
+      setProcessing(false);
     } else {
       console.log("[PaymentMethod]", paymentMethod);
       setError("");
@@ -83,6 +87,7 @@ const Checkout = ({ rdata }) => {
       });
     if (confirmError) {
       console.log("confirm error");
+      setProcessing(false);
     } else {
       console.log("payment intent", paymentIntent);
       if (paymentIntent.status === "succeeded") {
@@ -106,9 +111,11 @@ const Checkout = ({ rdata }) => {
         };
 
         const res = await axiosSecure.post("/payments", payment);
+        navigate(`/biodata-details/${rdata.biodataId}`);
         console.log("payment saved", res.data);
       }
     }
+    setProcessing(false);
   };
 
   return (
@@ -129,7 +136,7 @@ const Checkout = ({ rdata }) => {
           },
         }}
       />
-      <button type="submit" disabled={!stripe}>
+      <button type="submit" disabled={!stripe || !clientSecret || processing}>
         Pay
       </button>
       <p className="text-red-600">{error}</p>
