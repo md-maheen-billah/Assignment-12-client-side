@@ -1,8 +1,8 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import useStatus from "../../hooks/useStatus";
 import useRole from "../../hooks/useRole";
 import toast from "react-hot-toast";
@@ -16,7 +16,7 @@ const BiodataDetails = () => {
 
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
-  const { data: biodata = {} } = useQuery({
+  const { data: biodata = {}, isLoading } = useQuery({
     queryKey: ["biodata", id],
     queryFn: async () => {
       const { data } = await axiosSecure(`/biodata-details/${id}`);
@@ -35,7 +35,7 @@ const BiodataDetails = () => {
 
   console.log(access);
 
-  const { data: request = {} } = useQuery({
+  const { data: request = {}, refetch } = useQuery({
     queryKey: ["request", id, user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure(
@@ -46,7 +46,7 @@ const BiodataDetails = () => {
   });
   console.log(request);
 
-  const { data: biodatap = {}, isLoading } = useQuery({
+  const { data: biodatap = {} } = useQuery({
     queryKey: ["biodatap", id],
     queryFn: async () => {
       const { data } = await axiosSecure(`/biodata-details-premium/${id}`);
@@ -54,7 +54,7 @@ const BiodataDetails = () => {
     },
     enabled:
       status === "premium" ||
-      access.biodataId === parseFloat(id) ||
+      access?.biodataId === parseFloat(id) ||
       role === "admin" ||
       request?.status === "approved", // Query will only run if status is "premium"
   });
@@ -66,8 +66,10 @@ const BiodataDetails = () => {
       return data;
     },
     onSuccess: () => {
-      toast.success("Biodata Updated Successfully!");
+      refetch();
+      toast.success("Requested Access Successfully!");
     },
+    cleanup: () => QueryClient.invalidateQueries(["biodatap", id]),
   });
 
   const handleRequest = async (biodata) => {
@@ -112,6 +114,12 @@ const BiodataDetails = () => {
           >
             {request?.status ? `${request.status}` : "Show Contact Info"}
           </button>
+
+          <Link to={`/payment/${biodata.biodataId}`}>
+            <button className="px-4 py-2 bg-red-700 text-white">
+              Show Contact Info
+            </button>
+          </Link>
         </>
       )}
     </div>

@@ -19,6 +19,7 @@ import ManageUsers from "../pages/Dashboard/Pages/ManageUsers/ManageUsers";
 import PremiumRequests from "../pages/Dashboard/Pages/PremiumRequests/PremiumRequests";
 import ContactRequests from "../pages/Dashboard/Pages/ContactRequests/ContactRequests";
 import BiodataDetails from "../pages/BiodataDetails/BiodataDetails";
+import Payment from "../pages/Dashboard/Pages/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <BiodataDetails></BiodataDetails>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/payment/:id",
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
           </PrivateRoute>
         ),
       },
