@@ -1,4 +1,4 @@
-const FilterByDivision = ({ setFilter, filter }) => {
+const FilterByDivision = ({ setDFilter, dfilter, setCurrentPage }) => {
   const divisions = [
     "Barisal",
     "Chattogram",
@@ -13,9 +13,10 @@ const FilterByDivision = ({ setFilter, filter }) => {
     <div>
       <select
         onChange={(e) => {
-          setFilter(e.target.value);
+          setDFilter(e.target.value);
+          setCurrentPage(1);
         }}
-        value={filter}
+        value={dfilter}
         name="category"
         id="category"
         className="border bg-whiteM py-2 px-4 rounded-lg"
