@@ -4,9 +4,11 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import FilterByDivision from "./FilterByDivision";
 
 const Biodatas = () => {
   const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [filter, setFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [count, setCount] = useState(0);
   const [jobs, setJobs] = useState([]);
@@ -15,12 +17,12 @@ const Biodatas = () => {
       const { data } = await axios(
         `${
           import.meta.env.VITE_API_URL
-        }/biodata-public?page=${currentPage}&size=${itemsPerPage}`
+        }/biodata-public?page=${currentPage}&size=${itemsPerPage}&filter=${filter}`
       );
       setJobs(data);
     };
     getData();
-  }, [currentPage, itemsPerPage]);
+  }, [currentPage, itemsPerPage, filter]);
 
   useEffect(() => {
     const getCount = async () => {
@@ -44,6 +46,10 @@ const Biodatas = () => {
   return (
     <div>
       <h2>This is biodatas: {jobs.length}</h2>
+      <FilterByDivision
+        filter={filter}
+        setFilter={setFilter}
+      ></FilterByDivision>
       <div className="grid lg:grid-cols-3 gap-4">
         {jobs.map((item) => (
           <div className="my-6 border-red-500 border-2" key={item.biodataId}>

@@ -1,4 +1,14 @@
 const FilterByDivision = ({ setFilter, filter }) => {
+  const divisions = [
+    "Barisal",
+    "Chattogram",
+    "Dhaka",
+    "Khulna",
+    "Mymensingh",
+    "Rajshahi",
+    "Rangpur",
+    "Sylhet",
+  ];
   return (
     <div>
       <select
@@ -11,11 +21,11 @@ const FilterByDivision = ({ setFilter, filter }) => {
         className="border bg-whiteM py-2 px-4 rounded-lg"
       >
         <option value="">Filter By Category</option>
-        <option value="Italian">Italian</option>
-        <option value="Japanese">Japanese</option>
-        <option value="Mexican">Mexican</option>
-        <option value="Indian">Indian</option>
-        <option value="Mediterranean">Mediterranean</option>
+        {divisions.map((item) => (
+          <option key={item} value={item}>
+            {item}
+          </option>
+        ))}
       </select>
     </div>
   );
