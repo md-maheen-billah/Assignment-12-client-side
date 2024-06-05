@@ -78,8 +78,23 @@ const ManageUsers = () => {
     }
   };
 
-  const handlePremium = async (id) => {
-    console.log(id);
+  const { mutateAsync: mutatePremium2 } = useMutation({
+    mutationFn: async ({ mdata, email }) => {
+      const { data } = await axiosSecure.put(
+        `/users-premium-change2/${email}`,
+        mdata
+      );
+      return data;
+    },
+    onSuccess: () => {
+      refetch();
+    },
+  });
+
+  const handlePremium = async (item) => {
+    console.log(item._id);
+    const id = item._id;
+    const email = item.email;
     const status = "premium";
 
     try {
@@ -88,6 +103,11 @@ const ManageUsers = () => {
       };
       console.table(pdata);
 
+      const mdata = {
+        status,
+      };
+
+      await mutatePremium2({ email, mdata });
       //   Post request to server
       await mutatePremium({ id, pdata });
     } catch (err) {
@@ -142,7 +162,7 @@ const ManageUsers = () => {
             <p>premium member</p>
           ) : (
             <button
-              onClick={() => handlePremium(item._id)}
+              onClick={() => handlePremium(item)}
               className="px-4 py-2 bg-slate-700 text-white"
             >
               Make Premium

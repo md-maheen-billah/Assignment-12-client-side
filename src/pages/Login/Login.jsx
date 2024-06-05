@@ -33,6 +33,20 @@ const Login = () => {
         email: result?.user?.email,
       });
       console.log(data);
+      const saveUser = async (user) => {
+        const currentUser = {
+          email: user?.email,
+          role: "guest",
+          status: "regular",
+          name: user?.displayName,
+        };
+        const { data } = await axiosSecure.put(
+          `${import.meta.env.VITE_API_URL}/users`,
+          currentUser
+        );
+        return data;
+      };
+      await saveUser(result.user);
       navigate(from, { replace: true });
       toast.success("Signup Successful");
     } catch (err) {
@@ -50,6 +64,20 @@ const Login = () => {
         email: result?.user?.email,
       });
       console.log(data);
+      const saveUser = async (user) => {
+        const currentUser = {
+          email: user?.email,
+          role: "guest",
+          status: "regular",
+          name: user?.displayName,
+        };
+        const { data } = await axiosSecure.put(
+          `${import.meta.env.VITE_API_URL}/users`,
+          currentUser
+        );
+        return data;
+      };
+      await saveUser(result.user);
       navigate(from, { replace: true });
       toast.success("Signup Successful");
     } catch (err) {

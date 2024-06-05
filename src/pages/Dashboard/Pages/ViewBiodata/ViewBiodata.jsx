@@ -25,10 +25,22 @@ const ViewBiodata = () => {
     },
   });
 
+  const checkBiodataExists = async (email) => {
+    const { data } = await axiosSecure.get(`/check-biodata/${email}`);
+    return data.exists;
+  };
+
   const handlePremium = async () => {
     const status = "pending";
 
     try {
+      const biodataExists = await checkBiodataExists(user?.email);
+      if (!biodataExists) {
+        toast.error(
+          "Cannot apply for premium without biodata. Please add biodata first."
+        );
+        return;
+      }
       const pdata = {
         status,
       };

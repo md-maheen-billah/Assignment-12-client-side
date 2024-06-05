@@ -27,8 +27,23 @@ const PremiumRequests = () => {
     },
   });
 
-  const handlePremium = async (id) => {
-    console.log(id);
+  const { mutateAsync: mutatePremium2 } = useMutation({
+    mutationFn: async ({ mdata, email }) => {
+      const { data } = await axiosSecure.put(
+        `/users-premium-change2/${email}`,
+        mdata
+      );
+      return data;
+    },
+    onSuccess: () => {
+      refetch();
+    },
+  });
+
+  const handlePremium = async (item) => {
+    console.log(item._id);
+    const id = item._id;
+    const email = item.email;
     const status = "premium";
 
     try {
@@ -37,8 +52,13 @@ const PremiumRequests = () => {
       };
       console.table(pdata);
 
+      const mdata = {
+        status,
+      };
+
       //   Post request to server
       await mutatePremium({ id, pdata });
+      await mutatePremium2({ email, mdata });
     } catch (err) {
       console.log(err);
       toast.error(err.message);
@@ -53,7 +73,7 @@ const PremiumRequests = () => {
           <p>Requested Id: {item.email}</p>
 
           <button
-            onClick={() => handlePremium(item._id)}
+            onClick={() => handlePremium(item)}
             className="px-4 py-2 bg-slate-700 text-white"
           >
             Make Premium

@@ -62,21 +62,6 @@ const AuthProvider = ({ children }) => {
     });
   };
 
-  // save user
-  const saveUser = async (user) => {
-    const currentUser = {
-      email: user?.email,
-      role: "guest",
-      status: "regular",
-      name: user?.displayName,
-    };
-    const { data } = await axios.put(
-      `${import.meta.env.VITE_API_URL}/users`,
-      currentUser
-    );
-    return data;
-  };
-
   // onAuthStateChange
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -90,7 +75,6 @@ const AuthProvider = ({ children }) => {
             withCredentials: true,
           })
           .then(() => {});
-        saveUser(currentUser);
       } else {
         axios
           .post(`${import.meta.env.VITE_API_URL}/logout`, loggedUser, {
@@ -102,7 +86,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       return unsubscribe();
     };
-  }, []);
+  }, [user?.email]);
 
   const authInfo = {
     user,

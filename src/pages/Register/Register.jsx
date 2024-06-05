@@ -51,6 +51,20 @@ const Register = () => {
         displayName: name,
         email: email,
       });
+      const saveUser = async (user) => {
+        const currentUser = {
+          email: user?.email,
+          role: "guest",
+          status: "regular",
+          name: user?.displayName,
+        };
+        const { data } = await axiosSecure.put(
+          `${import.meta.env.VITE_API_URL}/users`,
+          currentUser
+        );
+        return data;
+      };
+      await saveUser(result.user);
       navigate("/");
       const { data } = await axiosSecure.post(`/jwt`, {
         email: result?.user?.email,
@@ -72,6 +86,20 @@ const Register = () => {
         email: result?.user?.email,
       });
       console.log(data);
+      const saveUser = async (user) => {
+        const currentUser = {
+          email: user?.email,
+          role: "guest",
+          status: "regular",
+          name: user?.displayName,
+        };
+        const { data } = await axiosSecure.put(
+          `${import.meta.env.VITE_API_URL}/users`,
+          currentUser
+        );
+        return data;
+      };
+      await saveUser(result.user);
       navigate("/");
       toast.success("Signup Successful");
     } catch (err) {
