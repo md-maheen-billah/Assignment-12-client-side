@@ -6,10 +6,10 @@ import { useState } from "react";
 const PremiumMembers = () => {
   const axiosSecure = useAxiosSecure();
   const [sort, setSort] = useState("");
-  const { data: pusers = [], refetch } = useQuery({
-    queryKey: ["pusers"],
+  const { data: pusers = [] } = useQuery({
+    queryKey: ["pusers", sort],
     queryFn: async () => {
-      const { data } = await axiosSecure(`/users-premium`);
+      const { data } = await axiosSecure(`/users-premium?sort=${sort}`);
       return data;
     },
   });
@@ -33,7 +33,7 @@ const PremiumMembers = () => {
         </select>
       </div>
       {pusers.slice(0, 6).map((member) => (
-        <MemberCard sort={sort} member={member} key={member._id}></MemberCard>
+        <MemberCard member={member} key={member._id}></MemberCard>
       ))}
     </div>
   );

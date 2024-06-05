@@ -27,23 +27,9 @@ const PremiumRequests = () => {
     },
   });
 
-  const { mutateAsync: mutatePremium2 } = useMutation({
-    mutationFn: async ({ mdata, email }) => {
-      const { data } = await axiosSecure.put(
-        `/users-premium-change2/${email}`,
-        mdata
-      );
-      return data;
-    },
-    onSuccess: () => {
-      refetch();
-    },
-  });
-
   const handlePremium = async (item) => {
     console.log(item._id);
     const id = item._id;
-    const email = item.email;
     const status = "premium";
 
     try {
@@ -52,13 +38,8 @@ const PremiumRequests = () => {
       };
       console.table(pdata);
 
-      const mdata = {
-        status,
-      };
-
       //   Post request to server
       await mutatePremium({ id, pdata });
-      await mutatePremium2({ email, mdata });
     } catch (err) {
       console.log(err);
       toast.error(err.message);

@@ -1,22 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
-
-const MemberCard = ({ member, sort }) => {
-  const axiosSecure = useAxiosSecure();
-  const { data: puser = {} } = useQuery({
-    queryKey: ["puser", member?.email],
-    queryFn: async () => {
-      const { data } = await axiosSecure(
-        `/biodata-public/${member?.email}?sort=${sort}`
-      );
-      return data;
-    },
-  });
-  console.log(puser);
+const MemberCard = ({ member }) => {
   return (
     <div>
-      <img className="w-20" src={puser.image} alt="" />
-      <h2>{member.email}</h2>
+      <img className="w-20" src={member.image} alt="" />
+      <h2>{member.sex}</h2>
+      <h2>{member.biodataId}</h2>
+      <h2>{member.permanentDivision}</h2>
+      <h2>{member.age}</h2>
+      <h2>{member.occupation}</h2>
     </div>
   );
 };
