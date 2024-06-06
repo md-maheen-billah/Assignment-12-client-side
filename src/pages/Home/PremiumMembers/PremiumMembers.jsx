@@ -32,8 +32,8 @@ const PremiumMembers = () => {
           <option value="asc">Ascending Order</option>
         </select>
       </div>
-      {pusers.slice(0, 6).map((member) => (
-        <MemberCard member={member} key={member._id}></MemberCard>
+      {pusers.slice(0, 6).map((member, idx) => (
+        <MemberCard member={member} key={idx}></MemberCard>
       ))}
     </div>
   );
