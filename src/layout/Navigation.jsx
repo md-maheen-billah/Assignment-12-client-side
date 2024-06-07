@@ -14,17 +14,17 @@ const Navigation = () => {
     // Close the dropdown
   };
 
+  const getLinkClasses = (path) =>
+    location.pathname === path
+      ? "md:text-blackM text-whiteM lg:text-base rounded-md md:rounded-none lg:border-b-4 md:border-blackM border-black bg-black md:bg-reddM"
+      : "text-whiteM lg:text-base hover:text-blue-400 lg:border-b-4 border-reddM";
+
   return (
     <div>
-      <Navbar fluid rounded>
-        <Navbar.Brand href="https://flowbite-react.com">
-          <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            className="mr-3 h-6 sm:h-9"
-            alt="Flowbite React Logo"
-          />
-          <span className="self-center whitespace-nowrap text-lg md:text-xl font-semibold dark:text-white">
-            Destined Affinity
+      <Navbar fluid className="bg-reddM">
+        <Navbar.Brand as={Link} to="/">
+          <span className="self-center whitespace-nowrap text-lg md:text-xl font-bold text-whiteM">
+            Destined <span className="text-blackM">Affinity</span>
           </span>
         </Navbar.Brand>
         <div className="flex md:order-2">
@@ -59,30 +59,30 @@ const Navigation = () => {
               </button>
             </Link>
           )}
-          <Navbar.Toggle />
+          <Navbar.Toggle className="bg-reddM hover:bg-red focus:ring-reddM focus:border-none focus:outline-none text-whiteM focus:bg-reddM" />
         </div>
         <Navbar.Collapse>
-          <Navbar.Link as={Link} to="/" active={location.pathname === "/"}>
+          <Navbar.Link as={Link} to="/" className={getLinkClasses("/")}>
             Home
           </Navbar.Link>
           <Navbar.Link
             as={Link}
             to="/biodatas"
-            active={location.pathname === "/biodatas"}
+            className={getLinkClasses("/biodatas")}
           >
             Biodatas
           </Navbar.Link>
           <Navbar.Link
             as={Link}
             to="/aboutus"
-            active={location.pathname === "/aboutus"}
+            className={getLinkClasses("/aboutus")}
           >
             About Us
           </Navbar.Link>
           <Navbar.Link
             as={Link}
             to="/contactus"
-            active={location.pathname === "/contactus"}
+            className={getLinkClasses("/contactus")}
           >
             Contact Us
           </Navbar.Link>
@@ -92,7 +92,7 @@ const Navigation = () => {
                 <Navbar.Link
                   as={Link}
                   to="/dashboard/admin-dashboard"
-                  active={location.pathname === "/dashboard/admin-dashboard"}
+                  className={getLinkClasses("/dashboard/admin-dashboard")}
                 >
                   Dashboard
                 </Navbar.Link>
@@ -100,7 +100,7 @@ const Navigation = () => {
                 <Navbar.Link
                   as={Link}
                   to="/dashboard/edit-biodata"
-                  active={location.pathname === "/dashboard/admin-dashboard"}
+                  className={getLinkClasses("/dashboard/edit-biodata")}
                 >
                   Dashboard
                 </Navbar.Link>
