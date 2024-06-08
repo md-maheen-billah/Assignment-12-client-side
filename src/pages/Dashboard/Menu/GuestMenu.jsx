@@ -1,26 +1,21 @@
+import { MdEdit } from "react-icons/md";
 import MenuItem from "./MenuItem";
-import { BsFingerprint } from "react-icons/bs";
+import { FaPerson } from "react-icons/fa6";
+import { LuHelpingHand } from "react-icons/lu";
+import { TiPin } from "react-icons/ti";
 
 const GuestMenu = () => {
   return (
     <>
+      <MenuItem icon={MdEdit} label="Edit Biodata" address="edit-biodata" />
+      <MenuItem icon={FaPerson} label="View Biodata" address="view-biodata" />
       <MenuItem
-        icon={BsFingerprint}
-        label="Edit Biodata"
-        address="edit-biodata"
-      />
-      <MenuItem
-        icon={BsFingerprint}
-        label="View Biodata"
-        address="view-biodata"
-      />
-      <MenuItem
-        icon={BsFingerprint}
+        icon={LuHelpingHand}
         label="My Contact Request"
         address="contact-request"
       />
       <MenuItem
-        icon={BsFingerprint}
+        icon={TiPin}
         label="Favourites Biodata"
         address="favourites-biodata"
       />
