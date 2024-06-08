@@ -1,3 +1,4 @@
+import "../../assets/styleb.css";
 const FilterBySex = ({ setSFilter, sfilter, setCurrentPage }) => {
   const sexs = ["Male", "Female"];
   return (
@@ -10,11 +11,13 @@ const FilterBySex = ({ setSFilter, sfilter, setCurrentPage }) => {
         value={sfilter}
         name="category"
         id="category"
-        className="border bg-whiteM py-2 px-4 rounded-lg"
+        className="border w-full text-whiteM focus:ring-redM selection:bg-black focus:border-redM focus:shadow-outline bg-reddM"
       >
-        <option value="">Filter By Sex</option>
+        <option className="text-blackM custom-option" value="">
+          Filter By Sex
+        </option>
         {sexs.map((item) => (
-          <option key={item} value={item}>
+          <option className="text-blackM custom-option" key={item} value={item}>
             {item}
           </option>
         ))}

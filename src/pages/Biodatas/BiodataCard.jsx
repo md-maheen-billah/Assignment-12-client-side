@@ -1,21 +1,24 @@
+import React from "react";
 import { FaBriefcase, FaHourglassEnd, FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
-const MemberCard = ({ member }) => {
+const BiodataCard = ({ member }) => {
   return (
     <div>
       <div className="max-w-xs mx-auto rounded-md shadow-md">
-        <img
-          src={member.image}
-          alt=""
-          className="object-cover object-center w-80 rounded-t-md h-56 bg-redM"
-        />
         <div className="flex flex-col justify-between px-6 py-4 space-y-6 bg-reddM">
           <div className="space-y-2">
-            <h2 className="text-2xl  font-semibold tracking-wide">
-              BIODATA ID{" "}
-              <span className="text-whiteM">#{member.biodataId}</span>
-            </h2>
+            <div className="flex items-center gap-2 mb-6">
+              <img
+                src={member.image}
+                alt=""
+                className="object-cover  object-center w-10 h-10 rounded-lg  bg-redM"
+              />
+              <h2 className="text-2xl font-semibold tracking-wide">
+                BIODATA ID{" "}
+                <span className="text-whiteM">#{member.biodataId}</span>
+              </h2>
+            </div>
             <p className="text-whiteM">{member.sex}</p>
             <div className="text-whiteM flex items-center gap-2">
               <FaLocationDot />
@@ -49,4 +52,4 @@ const MemberCard = ({ member }) => {
   );
 };
 
-export default MemberCard;
+export default BiodataCard;

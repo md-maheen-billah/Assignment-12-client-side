@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import MemberCard from "./MemberCard";
 import { useState } from "react";
 import SectionTitle from "../../../components/SectionTitle";
+import "../../../assets/styleb.css";
 
 const PremiumMembers = () => {
   const axiosSecure = useAxiosSecure();
@@ -34,13 +35,13 @@ const PremiumMembers = () => {
             id="sort"
             className="border text-whiteM focus:ring-redM selection:bg-black focus:border-redM focus:shadow-outline bg-reddM"
           >
-            <option className="text-blackM" value="">
+            <option className="text-blackM custom-option" value="">
               Sort By Age
             </option>
-            <option className="text-blackM" value="dsc">
+            <option className="text-blackM custom-option" value="dsc">
               Descending Order
             </option>
-            <option className="text-blackM" value="asc">
+            <option className="text-blackM custom-option" value="asc">
               Ascending Order
             </option>
           </select>

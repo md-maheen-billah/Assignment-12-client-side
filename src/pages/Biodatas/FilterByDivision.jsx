@@ -1,3 +1,5 @@
+import "../../assets/styleb.css";
+
 const FilterByDivision = ({ setDFilter, dfilter, setCurrentPage }) => {
   const divisions = [
     "Barisal",
@@ -19,11 +21,17 @@ const FilterByDivision = ({ setDFilter, dfilter, setCurrentPage }) => {
         value={dfilter}
         name="category"
         id="category"
-        className="border bg-whiteM py-2 px-4 rounded-lg"
+        className="border w-full text-whiteM focus:ring-redM selection:bg-black focus:border-redM focus:shadow-outline bg-reddM"
       >
-        <option value="">Filter By Category</option>
+        <option className="text-blackM custom-option" value="">
+          Filter By Category
+        </option>
         {divisions.map((item) => (
-          <option key={item} value={item}>
+          <option
+            className="text-blackM custom-option decoration"
+            key={item}
+            value={item}
+          >
             {item}
           </option>
         ))}

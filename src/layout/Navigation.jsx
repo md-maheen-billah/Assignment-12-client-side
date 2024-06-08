@@ -23,7 +23,7 @@ const Navigation = () => {
     <div>
       <Navbar fluid className="bg-reddM">
         <Navbar.Brand as={Link} to="/">
-          <span className="self-center whitespace-nowrap text-lg md:text-xl font-bold text-whiteM">
+          <span className="self-center whitespace-nowrap text-xl md:text-xl font-bold text-whiteM">
             Destined <span className="text-blackM">Affinity</span>
           </span>
         </Navbar.Brand>
@@ -34,7 +34,12 @@ const Navigation = () => {
                 arrowIcon={false}
                 inline
                 label={
-                  <Avatar alt="User settings" img={user?.photoURL} rounded />
+                  <Avatar
+                    className="border-2 rounded-full border-blackM"
+                    alt="User settings"
+                    img={user?.photoURL}
+                    rounded
+                  />
                 }
               >
                 <Dropdown.Header>
@@ -52,9 +57,13 @@ const Navigation = () => {
             </div>
           ) : (
             <Link to="/login">
-              <button className="font-bold ml-2 rounded-md px-4 py-2 bg-green-600 text-white relative overflow-hidden group z-10 hover:text-green duration-1000">
-                <span className="absolute bg-white  size-36 rounded-full group-hover:scale-100 scale-0 -z-10 -left-2 -top-10 group-hover:duration-500 duration-700 origin-center transform transition-all"></span>
-                <span className="absolute bg-green-400 size-36 -left-2 -top-10 rounded-full group-hover:scale-100 scale-0 -z-10 group-hover:duration-700 duration-500 origin-center transform transition-all"></span>
+              <button className="group relative z-10 px-6 py-2 overflow-hidden bg-black text-base text-white">
+                <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-white transition-transform duration-700 group-hover:scale-x-100 group-hover:duration-300"></span>
+                <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-redM transition-transform duration-500 group-hover:scale-x-100 group-hover:duration-700"></span>
+                <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-redM transition-transform duration-300 group-hover:scale-x-50 group-hover:duration-500"></span>
+                <span className="absolute z-10 text-center text-blackM opacity-0 duration-100 ease-out group-hover:opacity-100 group-hover:duration-700">
+                  Login
+                </span>
                 Login
               </button>
             </Link>
