@@ -27,10 +27,26 @@ const Payment = () => {
   };
   return (
     <div>
-      <h2>Payment</h2>
-      <img className="w-20" src={biodata.image} alt="" />
+      <section className="pt-6 dark:bg-gray-100 dark:text-gray-900">
+        <div className="container mx-auto flex flex-col items-center justify-center max-w-lg p-4 lg:max-w-full sm:p-10 lg:flex-row">
+          <div className="flex flex-col items-center justify-center flex-1 px-4 pt-4   dark:bg-gray-50">
+            <span className="lg:text-3xl md:text-2xl text-reddM">
+              Request Contact Info:{" "}
+              <span className="text-whiteM">Biodata #{biodata.biodataId}</span>
+            </span>
+            <p className="lg:text-5xl md:text-3xl text-2xl text-whiteM my-4 font-bold text-center">
+              5$ /Request
+            </p>
+            <p className="font-semibold text-center text-reddM">
+              Requested By: {user.email}
+            </p>
+          </div>
+        </div>
+      </section>
       <Elements stripe={stripePromise}>
-        <Checkout rdata={rdata}></Checkout>
+        <div className="mx-auto w-72 md:w-96">
+          <Checkout rdata={rdata}></Checkout>
+        </div>
       </Elements>
     </div>
   );

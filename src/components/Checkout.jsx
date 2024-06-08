@@ -136,12 +136,27 @@ const Checkout = ({ rdata }) => {
           },
         }}
       />
-      <button type="submit" disabled={!stripe || !clientSecret || processing}>
-        Pay
-      </button>
-      <p className="text-red-600">{error}</p>
+
+      <div
+        disabled={!stripe || !clientSecret || processing}
+        type="submit"
+        className="flex justify-center"
+      >
+        <button className="group disabled hover:cursor-not-allowed relative z-10 mt-2 px-6 py-2 overflow-hidden bg-reddM text-base text-blackM">
+          <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-white transition-transform duration-700 group-hover:scale-x-100 group-hover:duration-300"></span>
+          <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-redM transition-transform duration-500 group-hover:scale-x-100 group-hover:duration-700"></span>
+          <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-redM transition-transform duration-300 group-hover:scale-x-50 group-hover:duration-500"></span>
+          <span className="absolute z-10 text-center text-blackM opacity-0 duration-100 ease-out group-hover:opacity-100 group-hover:duration-700">
+            Pay
+          </span>
+          Pay
+        </button>
+      </div>
+      <p className="text-red-600 text-center mt-2">{error}</p>
       {transactionId && (
-        <p className="text-green-600">Your Transaction Id: {transactionId}</p>
+        <p className="text-green-600 text-center mt-2">
+          Your Transaction Id: {transactionId}
+        </p>
       )}
     </form>
   );
