@@ -70,7 +70,7 @@ const Register = () => {
         email: result?.user?.email,
       });
       console.log(data);
-      toast.success("Signup Successful");
+      toast.success("Register Successful");
     } catch (err) {
       console.log(err);
       toast.error(err.message);
@@ -101,7 +101,7 @@ const Register = () => {
       };
       await saveUser(result.user);
       navigate("/");
-      toast.success("Signup Successful");
+      toast.success("Register Successful");
     } catch (err) {
       console.log(err);
       toast.error(err.message);

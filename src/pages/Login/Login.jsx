@@ -48,7 +48,7 @@ const Login = () => {
       };
       await saveUser(result.user);
       navigate(from, { replace: true });
-      toast.success("Signup Successful");
+      toast.success("Login Successful");
     } catch (err) {
       console.log(err);
       toast.error(err.message);
@@ -79,7 +79,7 @@ const Login = () => {
       };
       await saveUser(result.user);
       navigate(from, { replace: true });
-      toast.success("Signup Successful");
+      toast.success("Login Successful");
     } catch (err) {
       console.log(err);
       toast.error(err.message);

@@ -222,9 +222,9 @@ const ViewBiodata = () => {
                       <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-redM transition-transform duration-500 group-hover:scale-x-100 group-hover:duration-700"></span>
                       <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-redM transition-transform duration-300 group-hover:scale-x-50 group-hover:duration-500"></span>
                       <span className="absolute z-10 text-center text-blackM opacity-0 duration-100 ease-out group-hover:opacity-100 group-hover:duration-700">
-                        Premium Member
+                        Request Premium Membership
                       </span>
-                      Premium Member
+                      Request Premium Membership
                     </button>
                   )}
                 </div>
