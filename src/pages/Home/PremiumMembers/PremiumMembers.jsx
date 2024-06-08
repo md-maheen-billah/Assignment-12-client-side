@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import MemberCard from "./MemberCard";
 import { useState } from "react";
+import SectionTitle from "../../../components/SectionTitle";
 
 const PremiumMembers = () => {
   const axiosSecure = useAxiosSecure();
@@ -15,26 +16,41 @@ const PremiumMembers = () => {
   });
   console.log(pusers);
   return (
-    <div>
-      <h2>Premium Members</h2>
-      <div>
-        <select
-          onChange={(e) => {
-            setSort(e.target.value);
-          }}
-          value={sort}
-          name="sort"
-          id="sort"
-          className="border p-4 rounded-md"
-        >
-          <option value="">Sort By Age</option>
-          <option value="dsc">Descending Order</option>
-          <option value="asc">Ascending Order</option>
-        </select>
+    <div className="mb-20">
+      <SectionTitle
+        subHeading={
+          "Access a curated list of premium profiles tailored to your preferences, ensuring the highest quality connections."
+        }
+        heading={"Our Premium Members"}
+      ></SectionTitle>
+      <div className="flex justify-center mb-10">
+        <div>
+          <select
+            onChange={(e) => {
+              setSort(e.target.value);
+            }}
+            value={sort}
+            name="sort"
+            id="sort"
+            className="border text-whiteM focus:ring-redM selection:bg-black focus:border-redM focus:shadow-outline bg-reddM"
+          >
+            <option className="text-blackM" value="">
+              Sort By Age
+            </option>
+            <option className="text-blackM" value="dsc">
+              Descending Order
+            </option>
+            <option className="text-blackM" value="asc">
+              Ascending Order
+            </option>
+          </select>
+        </div>
       </div>
-      {pusers.slice(0, 6).map((member, idx) => (
-        <MemberCard member={member} key={idx}></MemberCard>
-      ))}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {pusers.slice(0, 6).map((member, idx) => (
+          <MemberCard member={member} key={idx}></MemberCard>
+        ))}
+      </div>
     </div>
   );
 };

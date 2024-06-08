@@ -5,7 +5,9 @@ const Home = () => {
   return (
     <div>
       <Banner></Banner>
-      <PremiumMembers></PremiumMembers>
+      <div className="max-w-[1280px] mx-auto">
+        <PremiumMembers></PremiumMembers>
+      </div>
     </div>
   );
 };
