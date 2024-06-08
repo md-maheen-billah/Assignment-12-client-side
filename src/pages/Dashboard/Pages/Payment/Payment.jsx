@@ -27,7 +27,18 @@ const Payment = () => {
   };
   return (
     <div>
-      <section className="pt-6 dark:bg-gray-100 dark:text-gray-900">
+      <div
+        style={{
+          backgroundImage: `linear-gradient(180deg,  rgba(0,0,0,0.1), rgba(0,0,0,1)), linear-gradient(360deg,  rgba(0,0,0,0.1), rgba(0,0,0,0.3)),  url('https://i.ibb.co/TvjSfjk/Untitled-design-4.jpg')`,
+          backgroundPosition: "50% 25%",
+        }}
+        className="h-36 "
+      >
+        <div className="flex justify-center items-center h-full">
+          <h2 className="text-whiteM text-3xl font-bold">PAYMENT</h2>
+        </div>
+      </div>
+      <section className="pt-2 dark:bg-gray-100 dark:text-gray-900">
         <div className="container mx-auto flex flex-col items-center justify-center max-w-lg p-4 lg:max-w-full sm:p-10 lg:flex-row">
           <div className="flex flex-col items-center justify-center flex-1 px-4 pt-4   dark:bg-gray-50">
             <span className="lg:text-3xl md:text-2xl text-reddM">

@@ -142,7 +142,7 @@ const Checkout = ({ rdata }) => {
         type="submit"
         className="flex justify-center"
       >
-        <button className="group disabled hover:cursor-not-allowed relative z-10 mt-2 px-6 py-2 overflow-hidden bg-reddM text-base text-blackM">
+        <button className="group disabled hover:cursor-not-allowed relative z-10 mt-2 px-6 py-2 overflow-hidden bg-reddM text-base text-whiteM">
           <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-white transition-transform duration-700 group-hover:scale-x-100 group-hover:duration-300"></span>
           <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-redM transition-transform duration-500 group-hover:scale-x-100 group-hover:duration-700"></span>
           <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-redM transition-transform duration-300 group-hover:scale-x-50 group-hover:duration-500"></span>

@@ -91,182 +91,195 @@ const BiodataDetails = () => {
 
   if (isLoading) return <LoadingSpinner />;
   return (
-    <div className="max-w-[1280px] mx-auto my-10">
-      <div className="flex justify-center">
-        <div>
-          <div className="flex justify-center">
-            <div className="relative">
-              <Tooltip id="my-tooltip" />
+    <div>
+      <div
+        style={{
+          backgroundImage: `linear-gradient(180deg,  rgba(0,0,0,0.1), rgba(0,0,0,1)), linear-gradient(360deg,  rgba(0,0,0,0.1), rgba(0,0,0,0.3)),  url('https://i.ibb.co/TvjSfjk/Untitled-design-4.jpg')`,
+          backgroundPosition: "50% 25%",
+        }}
+        className="h-36 "
+      >
+        <div className="flex justify-center items-center h-full">
+          <h2 className="text-whiteM text-3xl font-bold">BIODATA PROFILE</h2>
+        </div>
+      </div>
+      <div className="max-w-[1280px] mx-auto my-10 md:my-20">
+        <div className="flex justify-center">
+          <div className="lg:flex items-center ">
+            <div className="flex justify-center">
+              <div className="relative">
+                <Tooltip id="my-tooltip" />
 
-              <button
-                className="absolute hover:scale-110 cursor-pointer right-2 top-2"
-                onClick={handleAddFavorite}
-              >
-                <FaHeart
-                  data-tooltip-id="my-tooltip"
-                  data-tooltip-content="Add to Favorite!"
-                  className=" text-2xl text-reddM"
+                <button
+                  className="absolute hover:scale-110 cursor-pointer right-2 top-2"
+                  onClick={handleAddFavorite}
+                >
+                  <FaHeart
+                    data-tooltip-id="my-tooltip"
+                    data-tooltip-content="Add to Favorite!"
+                    className=" text-2xl text-reddM"
+                  />
+                </button>
+
+                <img
+                  className="lg:w-[315px] lg:h-[315px] w-64 h-64 rounded-md lg:rounded-none lg:rounded-l-md border-redM border-2"
+                  src={biodata.image}
+                  alt=""
                 />
-              </button>
-
-              <img
-                className="w-52 h-52 rounded-md border-redM border-2"
-                src={biodata.image}
-                alt=""
-              />
+              </div>
             </div>
-          </div>
-          <div className="flex justify-center mt-6 border-redM border-2 bg-reddM p-4 rounded-md">
-            <div className="space-y-2">
-              <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
-                <p className="text-blackM font-medium mb-2 md:mb-0 md:w-1/2">
-                  Name:{" "}
-                  <span className="text-whiteM font-normal">
-                    {biodata.name}
-                  </span>
-                </p>
-                <p className="text-blackM md:w-1/2 font-medium ">
-                  Date of Birth:{" "}
-                  <span className="text-whiteM font-normal">
-                    {biodata.dateOfBirth}
-                  </span>
-                </p>
-              </div>
-              <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
-                <p className="text-blackM md:w-1/2 mb-2 md:mb-0 font-medium">
-                  Height:{" "}
-                  <span className="text-whiteM font-normal">
-                    {biodata.height} cm
-                  </span>
-                </p>
-                <p className="text-blackM md:w-1/2 font-medium">
-                  Weight:{" "}
-                  <span className="text-whiteM font-normal">
-                    {biodata.weight} kg
-                  </span>
-                </p>
-              </div>
-              <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
-                <p className="text-blackM md:w-1/2 mb-2 md:mb-0 font-medium">
-                  Age:{" "}
-                  <span className="text-whiteM font-normal">
-                    {biodata.age} years old
-                  </span>
-                </p>
-                <p className="text-blackM md:w-1/2 font-medium">
-                  Occupation:{" "}
-                  <span className="text-whiteM font-normal">
-                    {biodata.occupation}
-                  </span>
-                </p>
-              </div>
-              <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
-                <p className="text-blackM md:w-1/2 mb-2 md:mb-0 font-medium">
-                  Father&#39;s Name:{" "}
-                  <span className="text-whiteM font-normal">
-                    {biodata.fname}
-                  </span>
-                </p>
-                <p className="text-blackM md:w-1/2 font-medium">
-                  Mother&#39;s Name:{" "}
-                  <span className="text-whiteM font-normal">
-                    {biodata.mname}
-                  </span>
-                </p>
-              </div>
-              <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
-                <p className="text-blackM md:w-1/2 mb-2 md:mb-0 font-medium">
-                  Permanent Address:{" "}
-                  <span className="text-whiteM font-normal">
-                    {biodata.permanentDivision}
-                  </span>
-                </p>
-                <p className="text-blackM md:w-1/2 font-medium">
-                  Present Address:{" "}
-                  <span className="text-whiteM font-normal">
-                    {biodata.presentDivision}
-                  </span>
-                </p>
-              </div>
-              <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
-                <p className="text-blackM md:w-1/2 mb-2 md:mb-0 font-medium">
-                  Race:{" "}
-                  <span className="text-whiteM font-normal">
-                    {biodata.race}
-                  </span>
-                </p>
-                <p className="text-blackM md:w-1/2 font-medium">
-                  Expected Partner Age:{" "}
-                  <span className="text-whiteM font-normal">
-                    {biodata.expectedPartnerAge} years old
-                  </span>
-                </p>
-              </div>
-              <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
-                <p className="text-blackM md:w-1/2 mb-2 md:mb-0 font-medium">
-                  Expected Partner Height:{" "}
-                  <span className="text-whiteM font-normal">
-                    {biodata.expectedPartnerHeight} cm
-                  </span>
-                </p>
-                <p className="text-blackM md:w-1/2 font-medium">
-                  Expected Partner Weight:{" "}
-                  <span className="text-whiteM font-normal">
-                    {biodata.expectedPartnerWeight} kg
-                  </span>
-                </p>
-              </div>
-              {status === "premium" ||
-              access.biodataId === parseFloat(id) ||
-              role === "admin" ||
-              request?.status === "approved" ? (
-                <>
-                  <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
-                    <p className="text-blackM w-1/2 mb-2 md:mb-0 font-medium">
-                      Email:{" "}
-                      <span className="text-whiteM font-normal">
-                        {biodatap?.email}
-                      </span>
-                    </p>
-                    <p className="text-blackM w-1/2 font-medium">
-                      Phone:{" "}
-                      <span className="text-whiteM font-normal">
-                        {biodatap?.mobile}
-                      </span>
-                    </p>
-                  </div>
-                </>
-              ) : (
-                <>
-                  {request?.status === "pending" ? (
-                    <div className="flex justify-center">
-                      <button className="group disabled hover:cursor-not-allowed relative z-10 mt-2 px-6 py-3 overflow-hidden bg-black text-base text-white">
-                        <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-white transition-transform duration-700 group-hover:scale-x-100 group-hover:duration-300"></span>
-                        <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-redM transition-transform duration-500 group-hover:scale-x-100 group-hover:duration-700"></span>
-                        <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-redM transition-transform duration-300 group-hover:scale-x-50 group-hover:duration-500"></span>
-                        <span className="absolute z-10 text-center text-blackM opacity-0 duration-100 ease-out group-hover:opacity-100 group-hover:duration-700">
-                          Please Wait for Admin Approval
+            <div className="flex justify-center mt-6 lg:mt-0 border-redM border-2 bg-reddM p-4 rounded-md lg:rounded-none lg:rounded-r-md">
+              <div className="space-y-2">
+                <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
+                  <p className="text-blackM font-medium mb-2 md:mb-0 md:w-1/2">
+                    Name:{" "}
+                    <span className="text-whiteM font-normal">
+                      {biodata.name}
+                    </span>
+                  </p>
+                  <p className="text-blackM md:w-1/2 font-medium ">
+                    Date of Birth:{" "}
+                    <span className="text-whiteM font-normal">
+                      {biodata.dateOfBirth}
+                    </span>
+                  </p>
+                </div>
+                <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
+                  <p className="text-blackM md:w-1/2 mb-2 md:mb-0 font-medium">
+                    Height:{" "}
+                    <span className="text-whiteM font-normal">
+                      {biodata.height} cm
+                    </span>
+                  </p>
+                  <p className="text-blackM md:w-1/2 font-medium">
+                    Weight:{" "}
+                    <span className="text-whiteM font-normal">
+                      {biodata.weight} kg
+                    </span>
+                  </p>
+                </div>
+                <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
+                  <p className="text-blackM md:w-1/2 mb-2 md:mb-0 font-medium">
+                    Age:{" "}
+                    <span className="text-whiteM font-normal">
+                      {biodata.age} years old
+                    </span>
+                  </p>
+                  <p className="text-blackM md:w-1/2 font-medium">
+                    Occupation:{" "}
+                    <span className="text-whiteM font-normal">
+                      {biodata.occupation}
+                    </span>
+                  </p>
+                </div>
+                <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
+                  <p className="text-blackM md:w-1/2 mb-2 md:mb-0 font-medium">
+                    Father&#39;s Name:{" "}
+                    <span className="text-whiteM font-normal">
+                      {biodata.fname}
+                    </span>
+                  </p>
+                  <p className="text-blackM md:w-1/2 font-medium">
+                    Mother&#39;s Name:{" "}
+                    <span className="text-whiteM font-normal">
+                      {biodata.mname}
+                    </span>
+                  </p>
+                </div>
+                <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
+                  <p className="text-blackM md:w-1/2 mb-2 md:mb-0 font-medium">
+                    Permanent Address:{" "}
+                    <span className="text-whiteM font-normal">
+                      {biodata.permanentDivision}
+                    </span>
+                  </p>
+                  <p className="text-blackM md:w-1/2 font-medium">
+                    Present Address:{" "}
+                    <span className="text-whiteM font-normal">
+                      {biodata.presentDivision}
+                    </span>
+                  </p>
+                </div>
+                <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
+                  <p className="text-blackM md:w-1/2 mb-2 md:mb-0 font-medium">
+                    Race:{" "}
+                    <span className="text-whiteM font-normal">
+                      {biodata.race}
+                    </span>
+                  </p>
+                  <p className="text-blackM md:w-1/2 font-medium">
+                    Expected Partner Age:{" "}
+                    <span className="text-whiteM font-normal">
+                      {biodata.expectedPartnerAge} years old
+                    </span>
+                  </p>
+                </div>
+                <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
+                  <p className="text-blackM md:w-1/2 mb-2 md:mb-0 font-medium">
+                    Expected Partner Height:{" "}
+                    <span className="text-whiteM font-normal">
+                      {biodata.expectedPartnerHeight} cm
+                    </span>
+                  </p>
+                  <p className="text-blackM md:w-1/2 font-medium">
+                    Expected Partner Weight:{" "}
+                    <span className="text-whiteM font-normal">
+                      {biodata.expectedPartnerWeight} kg
+                    </span>
+                  </p>
+                </div>
+                {status === "premium" ||
+                access.biodataId === parseFloat(id) ||
+                role === "admin" ||
+                request?.status === "approved" ? (
+                  <>
+                    <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
+                      <p className="text-blackM w-1/2 mb-2 md:mb-0 font-medium">
+                        Email:{" "}
+                        <span className="text-whiteM font-normal">
+                          {biodatap?.email}
                         </span>
-                        Please Wait for Admin Approval
-                      </button>
+                      </p>
+                      <p className="text-blackM w-1/2 font-medium">
+                        Phone:{" "}
+                        <span className="text-whiteM font-normal">
+                          {biodatap?.mobile}
+                        </span>
+                      </p>
                     </div>
-                  ) : (
-                    <div className="flex justify-center">
-                      <Link to={`/payment/${biodata.biodataId}`}>
-                        <button className="group relative z-10 mt-2 px-6 py-3 overflow-hidden bg-black text-base text-white">
+                  </>
+                ) : (
+                  <>
+                    {request?.status === "pending" ? (
+                      <div className="flex justify-center">
+                        <button className="group disabled hover:cursor-not-allowed relative z-10 mt-2 px-6 py-3 overflow-hidden bg-black text-base text-white">
                           <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-white transition-transform duration-700 group-hover:scale-x-100 group-hover:duration-300"></span>
                           <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-redM transition-transform duration-500 group-hover:scale-x-100 group-hover:duration-700"></span>
                           <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-redM transition-transform duration-300 group-hover:scale-x-50 group-hover:duration-500"></span>
                           <span className="absolute z-10 text-center text-blackM opacity-0 duration-100 ease-out group-hover:opacity-100 group-hover:duration-700">
-                            Show Contact Info
+                            Please Wait for Admin Approval
                           </span>
-                          Show Contact Info
+                          Please Wait for Admin Approval
                         </button>
-                      </Link>
-                    </div>
-                  )}
-                </>
-              )}
+                      </div>
+                    ) : (
+                      <div className="flex justify-center">
+                        <Link to={`/payment/${biodata.biodataId}`}>
+                          <button className="group relative z-10 mt-2 px-6 py-3 overflow-hidden bg-black text-base text-white">
+                            <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-white transition-transform duration-700 group-hover:scale-x-100 group-hover:duration-300"></span>
+                            <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-redM transition-transform duration-500 group-hover:scale-x-100 group-hover:duration-700"></span>
+                            <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-redM transition-transform duration-300 group-hover:scale-x-50 group-hover:duration-500"></span>
+                            <span className="absolute z-10 text-center text-blackM opacity-0 duration-100 ease-out group-hover:opacity-100 group-hover:duration-700">
+                              Show Contact Info
+                            </span>
+                            Show Contact Info
+                          </button>
+                        </Link>
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </div>

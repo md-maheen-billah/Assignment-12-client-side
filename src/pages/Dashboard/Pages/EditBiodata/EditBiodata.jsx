@@ -270,28 +270,28 @@ const EditBiodata = () => {
   if (isLoading) return <LoadingSpinner />;
   return (
     <div>
-      <div
-        // style={{
-        //   backgroundImage: `linear-gradient(180deg,  rgba(0,0,0,0.1), rgba(0,0,0,1)), linear-gradient(360deg,  rgba(0,0,0,0.1), rgba(0,0,0,0.3)),  url(${bgimg})`,
-        // }}
-        className="mt-8 rounded-2xl bg-cover flex justify-center items-center lg:h-56"
-      >
-        <div>
-          <h2 className=" text-center pt-2 lg:pt-0 font-bold text-2xl md:text-4xl text-whiteM mb-2">
-            Edit Biodata
-          </h2>
-          <p className="text-lgreenM px-4 pb-4 text-center">
-            Share your culinary masterpieces with the world in our dedicated
-            food posting section, where every dish becomes a feast for the eyes.
-          </p>
+      <div>
+        <div
+          style={{
+            backgroundImage: `linear-gradient(180deg,  rgba(0,0,0,0.1), rgba(0,0,0,1)), linear-gradient(360deg,  rgba(0,0,0,0.1), rgba(0,0,0,0.3)),  url('https://i.ibb.co/TvjSfjk/Untitled-design-4.jpg')`,
+            backgroundPosition: "50% 25%",
+          }}
+          className="h-36 "
+        >
+          <div className="flex justify-center items-center h-full">
+            <h2 className="text-whiteM text-3xl font-bold">EDIT BIODATA</h2>
+          </div>
         </div>
       </div>
-      <div data-aos="fade-up" className="lg:mt-8 mt-6 mb-10 lg:mb-20">
+      <div
+        data-aos="fade-up"
+        className=" mt-6 mb-10 lg:mb-20 max-w-[1280px] mx-auto px-2 lg:px-10"
+      >
         <form onSubmit={handleSubmit} className="mt-4 space-y-3">
           <div>
             <div className="flex justify-center relative">
               <img
-                className="mt-4 rounded-full w-[120px] h-[120px] border-4 border-[#5CDB95] transition hover:scale-105"
+                className="mt-4 rounded-full w-[120px] h-[120px] border-4 border-reddM transition hover:scale-105"
                 src={imagePreview}
                 alt=""
               />
