@@ -6,6 +6,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { imageUpload } from "../../../../utils";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
+import "../../../../assets/styleb.css";
 
 const EditBiodata = () => {
   const { user, updateUserProfile } = useAuth();
@@ -279,7 +280,7 @@ const EditBiodata = () => {
           className="h-36 "
         >
           <div className="flex justify-center items-center h-full">
-            <h2 className="text-whiteM text-3xl font-bold">EDIT BIODATA</h2>
+            <h2 className="text-whiteM text-3xl font-bold">Edit Biodata</h2>
           </div>
         </div>
       </div>
@@ -319,7 +320,7 @@ const EditBiodata = () => {
                 Name:
               </label>
               <input
-                className="mt-2 p-2 rounded-md w-full bg-whiteM"
+                className="mt-2 p-2 rounded-md border w-full text-whiteM  focus:ring-redM selection:bg-black border-reddM focus:border-redM focus:shadow-outline bg-reddMxt-white  focus:shadow-outline bg-reddM"
                 type="text"
                 id="name"
                 name="name"
@@ -338,7 +339,7 @@ const EditBiodata = () => {
                   Age
                 </label>
                 <select
-                  className="mt-2   p-2 rounded-md w-full bg-whiteM"
+                  className="mt-2   p-2 rounded-md border w-full text-whiteM focus:ring-redM selection:bg-black border-reddM focus:border-redM focus:shadow-outline bg-reddMeM  focus:shadow-outline bg-reddM"
                   id="age"
                   name="age"
                   value={age}
@@ -347,7 +348,11 @@ const EditBiodata = () => {
                   required
                 >
                   {ages.map((age) => (
-                    <option key={age} value={age}>
+                    <option
+                      className="text-blackM custom-option"
+                      key={age}
+                      value={age}
+                    >
                       {age}
                     </option>
                   ))}
@@ -358,7 +363,7 @@ const EditBiodata = () => {
                   Sex:
                 </label>
                 <select
-                  className="mt-2   p-2 rounded-md w-full bg-whiteM"
+                  className="mt-2   p-2 rounded-md border w-full text-whiteM focus:ring-redM selection:bg-black border-reddM focus:border-redM focus:shadow-outline bg-reddM"
                   id="sex"
                   name="sex"
                   value={sex}
@@ -366,7 +371,11 @@ const EditBiodata = () => {
                   required
                 >
                   {sexs.map((sex) => (
-                    <option key={sex} value={sex}>
+                    <option
+                      className="text-blackM custom-option"
+                      key={sex}
+                      value={sex}
+                    >
                       {sex}
                     </option>
                   ))}
@@ -386,10 +395,14 @@ const EditBiodata = () => {
                   value={height}
                   onChange={handleHeightChange}
                   required
-                  className="mt-2   p-2 rounded-md w-full bg-whiteM"
+                  className="mt-2   p-2 rounded-md border w-full text-whiteM focus:ring-redM selection:bg-black border-reddM focus:border-redM focus:shadow-outline bg-reddM"
                 >
                   {heights.map((height) => (
-                    <option key={height} value={height}>
+                    <option
+                      className="text-blackM custom-option"
+                      key={height}
+                      value={height}
+                    >
                       {height} cm
                     </option>
                   ))}
@@ -405,10 +418,14 @@ const EditBiodata = () => {
                   value={weight}
                   onChange={handleWeightChange}
                   required
-                  className="mt-2   p-2 rounded-md w-full bg-whiteM"
+                  className="mt-2   p-2 rounded-md border w-full text-whiteM focus:ring-redM selection:bg-black border-reddM focus:border-redM focus:shadow-outline bg-reddM"
                 >
                   {weights.map((weight) => (
-                    <option key={weight} value={weight}>
+                    <option
+                      className="text-blackM custom-option"
+                      key={weight}
+                      value={weight}
+                    >
                       {weight} kg
                     </option>
                   ))}
@@ -426,7 +443,7 @@ const EditBiodata = () => {
                 defaultValue={biodata.dateOfBirth}
                 onChange={handleDateChange}
                 required
-                className="mt-2   p-2 rounded-md w-full bg-whiteM"
+                className="mt-2   p-2 rounded-md border w-full text-whiteM focus:ring-redM selection:bg-black border-reddM focus:border-redM focus:shadow-outline bg-reddM"
               />
             </div>
           </div>
@@ -442,10 +459,14 @@ const EditBiodata = () => {
                 value={occupation}
                 onChange={handleOccupationChange}
                 required
-                className="mt-2   p-2 rounded-md w-full bg-whiteM"
+                className="mt-2   p-2 rounded-md border w-full text-whiteM focus:ring-redM selection:bg-black border-reddM focus:border-redM focus:shadow-outline bg-reddM"
               >
                 {occupations.map((occupation) => (
-                  <option key={occupation} value={occupation}>
+                  <option
+                    className="text-blackM custom-option"
+                    key={occupation}
+                    value={occupation}
+                  >
                     {occupation}
                   </option>
                 ))}
@@ -460,11 +481,15 @@ const EditBiodata = () => {
                 name="race"
                 value={race}
                 onChange={(e) => setRace(e.target.value)}
-                className="mt-2   p-2 rounded-md w-full bg-whiteM"
+                className="mt-2   p-2 rounded-md border w-full text-whiteM focus:ring-redM selection:bg-black border-reddM focus:border-redM focus:shadow-outline bg-reddM"
                 required
               >
                 {races.map((item) => (
-                  <option key={item} value={item}>
+                  <option
+                    className="text-blackM custom-option"
+                    key={item}
+                    value={item}
+                  >
                     {item}
                   </option>
                 ))}
@@ -485,10 +510,14 @@ const EditBiodata = () => {
                 value={presentDivision}
                 onChange={(e) => setPresentDivision(e.target.value)}
                 required
-                className="mt-2   p-2 rounded-md w-full bg-whiteM"
+                className="mt-2   p-2 rounded-md border w-full text-whiteM focus:ring-redM selection:bg-black border-reddM focus:border-redM focus:shadow-outline bg-reddM"
               >
                 {divisions.map((item) => (
-                  <option key={item} value={item}>
+                  <option
+                    className="text-blackM custom-option"
+                    key={item}
+                    value={item}
+                  >
                     {item}
                   </option>
                 ))}
@@ -506,11 +535,15 @@ const EditBiodata = () => {
                 name="permanentDivision"
                 value={permanentDivision}
                 onChange={(e) => setPermanentDivision(e.target.value)}
-                className="mt-2   p-2 rounded-md w-full bg-whiteM"
+                className="mt-2   p-2 rounded-md border w-full text-whiteM focus:ring-redM selection:bg-black border-reddM focus:border-redM focus:shadow-outline bg-reddM"
                 required
               >
                 {divisions.map((item) => (
-                  <option key={item} value={item}>
+                  <option
+                    className="text-blackM custom-option"
+                    key={item}
+                    value={item}
+                  >
                     {item}
                   </option>
                 ))}
@@ -523,7 +556,7 @@ const EditBiodata = () => {
                 Father&#39;s Name:
               </label>
               <input
-                className="mt-2 p-2 rounded-md w-full bg-whiteM"
+                className="mt-2 p-2 rounded-md border w-full text-whiteM focus:ring-redM selection:bg-black border-reddM focus:border-redM focus:shadow-outline bg-reddM"
                 type="text"
                 id="fname"
                 name="fname"
@@ -537,7 +570,7 @@ const EditBiodata = () => {
                 Mother&#39;s Name:
               </label>
               <input
-                className="mt-2 p-2 rounded-md w-full bg-whiteM"
+                className="mt-2 p-2 rounded-md border w-full text-whiteM focus:ring-redM selection:bg-black border-reddM focus:border-redM focus:shadow-outline bg-reddM"
                 type="text"
                 id="mname"
                 name="mname"
@@ -551,33 +584,43 @@ const EditBiodata = () => {
             <div className="lg:w-1/3">
               <p className="text-whiteM font-semibold">Expected Partner Age:</p>
               <div className="mt-2 flex items-center gap-4">
-                <label className="" htmlFor="minAge">
+                <label className="text-whiteM" htmlFor="minAge">
                   From:{" "}
                 </label>
                 <select
                   id="minAge"
                   name="minAge"
-                  className="rounded-md w-5/12"
+                  className="rounded-md w-5/12 border border-reddM text-whiteM focus:ring-redM selection:bg-black focus:border-redM focus:shadow-outline bg-reddM"
                   value={minAge}
                   onChange={(e) => setMinAge(e.target.value)}
                 >
                   {ages.map((age) => (
-                    <option key={age} value={age}>
+                    <option
+                      className="text-blackM custom-option"
+                      key={age}
+                      value={age}
+                    >
                       {age}
                     </option>
                   ))}
                 </select>
 
-                <label htmlFor="maxAge">To: </label>
+                <label className="text-whiteM" htmlFor="maxAge">
+                  To:{" "}
+                </label>
                 <select
                   id="maxAge"
                   name="maxAge"
                   value={maxAge}
-                  className="rounded-md w-5/12"
+                  className="rounded-md w-5/12 border border-reddM text-whiteM focus:ring-redM selection:bg-black focus:border-redM focus:shadow-outline bg-reddM"
                   onChange={(e) => setMaxAge(e.target.value)}
                 >
                   {ages.map((age) => (
-                    <option key={age} value={age}>
+                    <option
+                      className="text-blackM custom-option"
+                      key={age}
+                      value={age}
+                    >
                       {age}
                     </option>
                   ))}
@@ -589,33 +632,43 @@ const EditBiodata = () => {
                 Expected Partner Height:
               </p>
               <div className="mt-2 flex items-center gap-4">
-                <label className="" htmlFor="minHeight">
+                <label className="text-whiteM" htmlFor="minHeight">
                   From:{" "}
                 </label>
                 <select
                   id="minHeight"
                   name="minHeight"
-                  className="rounded-md w-5/12"
+                  className="rounded-md w-5/12 border border-reddM text-whiteM focus:ring-redM selection:bg-black focus:border-redM focus:shadow-outline bg-reddM"
                   value={minHeight}
                   onChange={(e) => setMinHeight(e.target.value)}
                 >
                   {heights.map((height) => (
-                    <option key={height} value={height}>
+                    <option
+                      className="text-blackM custom-option"
+                      key={height}
+                      value={height}
+                    >
                       {height} cm
                     </option>
                   ))}
                 </select>
 
-                <label htmlFor="maxHeight">To: </label>
+                <label className="text-whiteM" htmlFor="maxHeight">
+                  To:{" "}
+                </label>
                 <select
                   id="maxHeight"
                   name="maxHeight"
                   value={maxHeight}
-                  className="rounded-md w-5/12"
+                  className="rounded-md w-5/12 border border-reddM text-whiteM focus:ring-redM selection:bg-black focus:border-redM focus:shadow-outline bg-reddM"
                   onChange={(e) => setMaxHeight(e.target.value)}
                 >
                   {heights.map((height) => (
-                    <option key={height} value={height}>
+                    <option
+                      className="text-blackM custom-option"
+                      key={height}
+                      value={height}
+                    >
                       {height} cm
                     </option>
                   ))}
@@ -627,33 +680,43 @@ const EditBiodata = () => {
                 Expected Partner Weight:
               </p>
               <div className="mt-2 flex items-center gap-4">
-                <label className="" htmlFor="minWeight">
+                <label className="text-whiteM" htmlFor="minWeight">
                   From:{" "}
                 </label>
                 <select
                   id="minWeight"
                   name="minWeight"
-                  className="rounded-md w-5/12"
+                  className="rounded-md w-5/12 border border-reddM text-whiteM focus:ring-redM selection:bg-black focus:border-redM focus:shadow-outline bg-reddM"
                   value={minWeight}
                   onChange={(e) => setMinWeight(e.target.value)}
                 >
                   {weights.map((weight) => (
-                    <option key={weight} value={weight}>
+                    <option
+                      className="text-blackM custom-option"
+                      key={weight}
+                      value={weight}
+                    >
                       {weight} kg
                     </option>
                   ))}
                 </select>
 
-                <label htmlFor="maxWeight">To: </label>
+                <label className="text-whiteM" htmlFor="maxWeight">
+                  To:{" "}
+                </label>
                 <select
                   id="maxWeight"
                   name="maxWeight"
                   value={maxWeight}
-                  className="rounded-md w-5/12"
+                  className="rounded-md w-5/12 border border-reddM text-whiteM focus:ring-redM selection:bg-black focus:border-redM focus:shadow-outline bg-reddM"
                   onChange={(e) => setMaxWeight(e.target.value)}
                 >
                   {weights.map((weight) => (
-                    <option key={weight} value={weight}>
+                    <option
+                      className="text-blackM custom-option"
+                      key={weight}
+                      value={weight}
+                    >
                       {weight} kg
                     </option>
                   ))}
@@ -669,7 +732,7 @@ const EditBiodata = () => {
                 Mobile Number:
               </label>
               <input
-                className="mt-2  p-2 rounded-md w-full bg-whiteM"
+                className="mt-2  p-2 rounded-md border w-full text-whiteM focus:ring-redM selection:bg-black border-reddM focus:border-redM focus:shadow-outline bg-reddM"
                 type="text"
                 id="mobile"
                 defaultValue={biodata.mobile}
@@ -683,7 +746,7 @@ const EditBiodata = () => {
                 Contact Email:
               </label>
               <input
-                className="mt-2   p-2 rounded-md w-full bg-whiteM"
+                className="mt-2   p-2 rounded-md border w-full text-whiteM focus:ring-redM selection:bg-black border-reddM focus:border-redM focus:shadow-outline bg-reddM"
                 type="email"
                 id="email"
                 name="sellerEmail"
@@ -696,11 +759,15 @@ const EditBiodata = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="font-bold ml-2 mt-6 rounded-md px-4 py-2 bg-green-600 text-white relative overflow-hidden group z-10 hover:text-green duration-1000"
+              className="group mt-8 relative z-10 px-6 py-3 overflow-hidden bg-reddM text-base text-white"
             >
-              <span className="absolute bg-white  size-36 rounded-full group-hover:scale-100 scale-0 -z-10 -left-2 -top-10 group-hover:duration-500 duration-700 origin-center transform transition-all"></span>
-              <span className="absolute bg-green-400 size-36 -left-2 -top-10 rounded-full group-hover:scale-100 scale-0 -z-10 group-hover:duration-700 duration-500 origin-center transform transition-all"></span>
-              Add Biodata
+              <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-white transition-transform duration-700 group-hover:scale-x-100 group-hover:duration-300"></span>
+              <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-redM transition-transform duration-500 group-hover:scale-x-100 group-hover:duration-700"></span>
+              <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-redM transition-transform duration-300 group-hover:scale-x-50 group-hover:duration-500"></span>
+              <span className="absolute z-10 text-center text-blackM opacity-0 duration-100 ease-out group-hover:opacity-100 group-hover:duration-700">
+                Edit Biodata
+              </span>
+              Edit Biodata
             </button>
           </div>
         </form>

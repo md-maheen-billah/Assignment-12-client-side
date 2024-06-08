@@ -1,6 +1,8 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { FaTrash, FaTrashCan } from "react-icons/fa6";
+import Swal from "sweetalert2";
 
 const RequestContactInfo = ({ item, refetch }) => {
   const axiosSecure = useAxiosSecure();
@@ -29,7 +31,7 @@ const RequestContactInfo = ({ item, refetch }) => {
     },
   });
 
-  const handleDelete = async (id) => {
+  const deletConfirmed = async (id) => {
     try {
       await mutateAsync({ id });
     } catch (err) {
@@ -37,20 +39,51 @@ const RequestContactInfo = ({ item, refetch }) => {
       toast.error(err.message);
     }
   };
+
+  const handleDelete = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deletConfirmed(id);
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your entry has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+  };
   return (
-    <div>
-      <p>{item.name}</p>
-      <p>{item.biodataId}</p>
-      <p>{item.status}</p>
-      <p>{biodatap?.email ? `${biodatap.email}` : "pending"}</p>
-      <p>{biodatap?.mobile ? `${biodatap.mobile}` : "pending"}</p>
-      <button
-        onClick={() => handleDelete(item._id)}
-        className="px-4 py-2 bg-slate-700 text-white"
-      >
-        Delete
-      </button>
-    </div>
+    <tr>
+      <td className="px-4 py-4 text-sm text-center text-blackM  whitespace-nowrap">
+        {item.name}
+      </td>
+      <td className="px-4 py-4 text-sm text-center text-blackM  whitespace-nowrap">
+        {item.biodataId}
+      </td>
+      <td className="px-4 py-4 text-sm text-center text-blackM  whitespace-nowrap">
+        {item.status}
+      </td>
+      <td className="px-4 py-4 text-sm text-center text-blackM  whitespace-nowrap">
+        {biodatap.mobile ? biodatap.mobile : "wait for approval"}
+      </td>
+      <td className="px-4 py-4 text-sm text-center text-blackM  whitespace-nowrap">
+        {biodatap.email ? biodatap.email : "wait for approval"}
+      </td>
+
+      <td className="px-4 py-4 text-sm text-center text-blackM  whitespace-nowrap">
+        <button onClick={() => handleDelete(item._id)} className="">
+          <FaTrash className="hover:text-reddM text-blackM" />
+        </button>
+      </td>
+    </tr>
   );
 };
 

@@ -6,21 +6,29 @@ import {
   MdWorkspacePremium,
 } from "react-icons/md";
 
-const AdminMenu = () => {
+const AdminMenu = ({ handleToggle }) => {
   return (
     <>
       <MenuItem
+        onClick={handleToggle}
         icon={MdDashboard}
         label="Admin Dashboard"
         address="admin-dashboard"
       />
-      <MenuItem icon={FaUserCog} label="Manage Users" address="manage-users" />
       <MenuItem
+        onClick={handleToggle}
+        icon={FaUserCog}
+        label="Manage Users"
+        address="manage-users"
+      />
+      <MenuItem
+        onClick={handleToggle}
         icon={MdWorkspacePremium}
         label="Premium Requests"
         address="premium-requests"
       />
       <MenuItem
+        onClick={handleToggle}
         icon={MdPermContactCalendar}
         label="Contact Requests"
         address="contact-requests"

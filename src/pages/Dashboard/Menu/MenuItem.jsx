@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 
-const MenuItem = ({ label, address, icon: Icon }) => {
+const MenuItem = ({ label, address, icon: Icon, onClick }) => {
   return (
     <NavLink
       to={address}
+      onClick={onClick}
       end
       className={({ isActive }) =>
         `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-blackM   hover:text-whiteM ${
@@ -22,6 +23,7 @@ MenuItem.propTypes = {
   label: PropTypes.string,
   address: PropTypes.string,
   icon: PropTypes.elementType,
+  onClick: PropTypes.func,
 };
 
 export default MenuItem;

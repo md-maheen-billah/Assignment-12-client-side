@@ -100,7 +100,7 @@ const BiodataDetails = () => {
         className="h-36 "
       >
         <div className="flex justify-center items-center h-full">
-          <h2 className="text-whiteM text-3xl font-bold">BIODATA PROFILE</h2>
+          <h2 className="text-whiteM text-3xl font-bold">Biodata Profile</h2>
         </div>
       </div>
       <div className="max-w-[1280px] mx-auto my-10 md:my-20">
@@ -128,7 +128,7 @@ const BiodataDetails = () => {
                 />
               </div>
             </div>
-            <div className="flex justify-center mt-6 lg:mt-0 border-redM border-2 bg-reddM p-4 rounded-md lg:rounded-none lg:rounded-r-md">
+            <div className="flex justify-center lg:h-[315px] mt-6 lg:mt-0 border-redM border-2 bg-reddM p-4 rounded-md lg:rounded-none lg:rounded-r-md">
               <div className="space-y-2">
                 <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
                   <p className="text-blackM font-medium mb-2 md:mb-0 md:w-1/2">

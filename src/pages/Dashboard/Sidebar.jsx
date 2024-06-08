@@ -8,6 +8,8 @@ import { FcSettings } from "react-icons/fc";
 import { GrLogout } from "react-icons/gr";
 import GuestMenu from "./Menu/GuestMenu";
 import AdminMenu from "./Menu/AdminMenu";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { ImCross } from "react-icons/im";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
@@ -35,25 +37,33 @@ const Sidebar = () => {
 
         <button
           onClick={handleToggle}
-          className="mobile-menu-button p-4 focus:outline-none focus:bg-gray-200"
+          className="mobile-menu-button text-blackM p-4 focus:outline-none focus:bg-blackM focus:text-whiteM"
         >
-          <AiOutlineBars className="h-5 w-5" />
+          <GiHamburgerMenu className="h-5 w-5" />
         </button>
       </div>
 
       {/* Sidebar */}
       <div
-        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-reddM w-64 lg:w-72 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
+        className={`z-50 md:fixed flex flex-col justify-between overflow-x-hidden bg-reddM w-full md:w-64 lg:w-72 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
           isActive && "-translate-x-full"
         }  md:translate-x-0  transition duration-200 ease-in-out`}
       >
         <div>
           <div className="block md:hidden cursor-pointer px-4 font-bold">
-            <Link to="/">
-              <span className="self-center whitespace-nowrap text-xl md:text-xl font-bold text-whiteM">
-                Destined <span className="text-blackM">Affinity</span>
-              </span>
-            </Link>
+            <div className="flex items-center justify-between">
+              <Link to="/">
+                <span className="self-center whitespace-nowrap text-xl md:text-xl font-bold text-whiteM">
+                  Destined <span className="text-blackM">Affinity</span>
+                </span>
+              </Link>
+              <button
+                onClick={handleToggle}
+                className="mobile-menu-button text-blackM  focus:outline-none "
+              >
+                <ImCross className="h-4 w-4" />
+              </button>
+            </div>
           </div>
           <div>
             <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center  mx-auto">
@@ -71,8 +81,8 @@ const Sidebar = () => {
 
             {/*  Menu Items */}
             <nav>
-              {role === "guest" && <GuestMenu />}
-              {role === "admin" && <AdminMenu />}
+              {role === "guest" && <GuestMenu handleToggle={handleToggle} />}
+              {role === "admin" && <AdminMenu handleToggle={handleToggle} />}
             </nav>
           </div>
         </div>
