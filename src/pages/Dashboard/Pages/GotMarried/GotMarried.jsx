@@ -6,12 +6,13 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { imageUpload } from "../../../../utils";
+import LoadingSpinner from "../../../../components/LoadingSpinner";
 
 const GotMarried = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
-  const { data: biodata = {} } = useQuery({
+  const { data: biodata = {}, isLoading } = useQuery({
     queryKey: ["biodata", user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure(`/biodata/${user?.email}`);
@@ -102,6 +103,7 @@ const GotMarried = () => {
       toast.error(err.message);
     }
   };
+  if (isLoading) return <LoadingSpinner />;
   return (
     <div>
       <div

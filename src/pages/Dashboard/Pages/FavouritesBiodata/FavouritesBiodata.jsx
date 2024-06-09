@@ -4,11 +4,16 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { FaTrash } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../../../../components/LoadingSpinner";
 
 const FavouritesBiodata = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const { data: favorites = [], refetch } = useQuery({
+  const {
+    data: favorites = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["favorites", user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure(`/favorites/${user?.email}`);
@@ -58,6 +63,7 @@ const FavouritesBiodata = () => {
   };
 
   console.log(favorites);
+  if (isLoading) return <LoadingSpinner />;
   return (
     <div>
       <div>

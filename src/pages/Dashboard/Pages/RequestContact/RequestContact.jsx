@@ -2,12 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import RequestContactInfo from "./RequestContactInfo";
-import { Link } from "react-router-dom";
+import LoadingSpinner from "../../../../components/LoadingSpinner";
 
 const RequestContact = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const { data: requests = [], refetch } = useQuery({
+  const {
+    data: requests = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["requests", user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure(
@@ -17,6 +21,7 @@ const RequestContact = () => {
     },
   });
   console.log(requests);
+  if (isLoading) return <LoadingSpinner />;
   return (
     <div>
       <div>

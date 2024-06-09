@@ -3,9 +3,10 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import useAuth from "../../../../hooks/useAuth";
 import useStatus from "../../../../hooks/useStatus";
+import LoadingSpinner from "../../../../components/LoadingSpinner";
 
 const ViewBiodata = () => {
-  const [status, refetch] = useStatus();
+  const [status, refetch, isLoading] = useStatus();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
@@ -62,6 +63,7 @@ const ViewBiodata = () => {
       toast.error(err.message);
     }
   };
+  if (isLoading) return <LoadingSpinner />;
   return (
     <div>
       <div
