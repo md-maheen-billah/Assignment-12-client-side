@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
-import { TbFidgetSpinner } from "react-icons/tb";
 import { FcGoogle } from "react-icons/fc";
 import { imageUpload } from "../../utils";
 import { useEffect } from "react";
@@ -108,11 +107,11 @@ const Register = () => {
     }
   };
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
-        <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-bold">Sign Up</h1>
-          <p className="text-sm text-gray-400">Welcome to StayVista</p>
+    <div className="flex justify-center items-center mt-4 mb-6 px-2">
+      <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10  text-whiteM">
+        <div className="mb-6 text-center">
+          <h1 className="my-3 text-4xl font-bold">REGISTER</h1>
+          <p className="text-sm text-redM">Welcome to Destined Affinity</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
@@ -173,41 +172,42 @@ const Register = () => {
             </div>
           </div>
 
-          <div>
+          <div className="flex justify-center">
             <button
-              disabled={loading}
               type="submit"
-              className="bg-rose-500 w-full rounded-md py-3 text-white"
+              className="group mt-2 w-full rounded-md relative z-10 px-6 py-3 overflow-hidden bg-reddM text-base text-white"
             >
-              {loading ? (
-                <TbFidgetSpinner className="animate-spin m-auto" />
-              ) : (
-                "Continue"
-              )}
+              <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-white transition-transform duration-700 group-hover:scale-x-100 group-hover:duration-300"></span>
+              <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-redM transition-transform duration-500 group-hover:scale-x-100 group-hover:duration-700"></span>
+              <span className="absolute -inset-8 origin-left rotate-14 scale-x-0 transform bg-redM transition-transform duration-300 group-hover:scale-x-50 group-hover:duration-500"></span>
+              <span className="absolute z-10 text-center text-blackM opacity-0 duration-100 ease-out group-hover:opacity-100 group-hover:duration-700">
+                Register
+              </span>
+              Register
             </button>
           </div>
         </form>
-        <div className="flex items-center pt-4 space-x-1">
-          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
-          <p className="px-3 text-sm dark:text-gray-400">
-            Signup with social accounts
-          </p>
-          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
+        <div className="flex items-center justify-between mt-8 mb-6">
+          <span className="w-1/5 border-b border-greenM lg:w-1/4"></span>
+
+          <div className="text-xs text-center text-greenM uppercase ">or</div>
+
+          <span className="w-1/5 border-b border-greenM lg:w-1/4"></span>
         </div>
         <button
           disabled={loading}
           onClick={handleGoogleSignIn}
-          className="disabled:cursor-not-allowed flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
+          className="disabled:cursor-not-allowed flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 hover:border-redM border-rounded cursor-pointer"
         >
           <FcGoogle size={32} />
 
           <p>Continue with Google</p>
         </button>
-        <p className="px-6 text-sm text-center text-gray-400">
+        <p className="px-6 text-sm mt-2 text-center text-gray-400">
           Already have an account?{" "}
           <Link
             to="/login"
-            className="hover:underline hover:text-rose-500 text-gray-600"
+            className="hover:underline hover:text-rose-500 text-redM"
           >
             Login
           </Link>
