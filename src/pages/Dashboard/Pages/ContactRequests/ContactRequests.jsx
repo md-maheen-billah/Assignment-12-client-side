@@ -77,7 +77,7 @@ const ContactRequests = () => {
           className="h-36 "
         >
           <div className="flex justify-center items-center h-full">
-            <h2 className="text-whiteM text-3xl font-bold">Premium Requests</h2>
+            <h2 className="text-whiteM text-3xl font-bold">Contact Requests</h2>
           </div>
         </div>
       </div>
