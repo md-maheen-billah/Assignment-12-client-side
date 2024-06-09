@@ -103,9 +103,9 @@ const BiodataDetails = () => {
           <h2 className="text-whiteM text-3xl font-bold">Biodata Profile</h2>
         </div>
       </div>
-      <div className="max-w-[1280px] mx-auto my-10 md:my-20">
+      <div className="max-w-[1280px] mx-auto my-10 lg:my-20">
         <div className="flex justify-center">
-          <div className="lg:flex items-center ">
+          <div className="lg:flex items-center lg:gap-10">
             <div className="flex justify-center">
               <div className="relative">
                 <Tooltip id="my-tooltip" />
@@ -117,27 +117,31 @@ const BiodataDetails = () => {
                   <FaHeart
                     data-tooltip-id="my-tooltip"
                     data-tooltip-content="Add to Favorite!"
-                    className=" text-2xl text-reddM"
+                    className=" text-2xl text-red-500"
                   />
                 </button>
 
                 <img
-                  className="lg:w-[315px] lg:h-[315px] w-64 h-64 rounded-md lg:rounded-none lg:rounded-l-md border-redM border-2"
+                  className="lg:w-[235px] mb-8 lg:h-[235px] w-64 h-64 rounded-full   border-redM border-2"
                   src={biodata.image}
                   alt=""
                 />
               </div>
             </div>
-            <div className="flex justify-center lg:h-[315px] mt-6 lg:mt-0 border-redM border-2 bg-reddM p-4 rounded-md lg:rounded-none lg:rounded-r-md px-2">
+            <div
+              className={`flex justify-center ${
+                biodatap?.email ? "lg:h-[280px]" : "lg:h-[245px]"
+              } mt-0 lg:mt-0  px-2`}
+            >
               <div className="space-y-2">
                 <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
-                  <p className="text-blackM font-medium mb-2 md:mb-0 md:w-1/2">
+                  <p className="text-redM font-medium mb-2 md:mb-0 md:w-1/2">
                     Name:{" "}
                     <span className="text-whiteM font-normal">
                       {biodata.name}
                     </span>
                   </p>
-                  <p className="text-blackM md:w-1/2 font-medium ">
+                  <p className="text-redM md:w-1/2 font-medium ">
                     Date of Birth:{" "}
                     <span className="text-whiteM font-normal">
                       {biodata.dateOfBirth}
@@ -145,13 +149,13 @@ const BiodataDetails = () => {
                   </p>
                 </div>
                 <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
-                  <p className="text-blackM md:w-1/2 mb-2 md:mb-0 font-medium">
+                  <p className="text-redM md:w-1/2 mb-2 md:mb-0 font-medium">
                     Height:{" "}
                     <span className="text-whiteM font-normal">
                       {biodata.height} cm
                     </span>
                   </p>
-                  <p className="text-blackM md:w-1/2 font-medium">
+                  <p className="text-redM md:w-1/2 font-medium">
                     Weight:{" "}
                     <span className="text-whiteM font-normal">
                       {biodata.weight} kg
@@ -159,13 +163,13 @@ const BiodataDetails = () => {
                   </p>
                 </div>
                 <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
-                  <p className="text-blackM md:w-1/2 mb-2 md:mb-0 font-medium">
+                  <p className="text-redM md:w-1/2 mb-2 md:mb-0 font-medium">
                     Age:{" "}
                     <span className="text-whiteM font-normal">
                       {biodata.age} years old
                     </span>
                   </p>
-                  <p className="text-blackM md:w-1/2 font-medium">
+                  <p className="text-redM md:w-1/2 font-medium">
                     Occupation:{" "}
                     <span className="text-whiteM font-normal">
                       {biodata.occupation}
@@ -173,13 +177,13 @@ const BiodataDetails = () => {
                   </p>
                 </div>
                 <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
-                  <p className="text-blackM md:w-1/2 mb-2 md:mb-0 font-medium">
+                  <p className="text-redM md:w-1/2 mb-2 md:mb-0 font-medium">
                     Father&#39;s Name:{" "}
                     <span className="text-whiteM font-normal">
                       {biodata.fname}
                     </span>
                   </p>
-                  <p className="text-blackM md:w-1/2 font-medium">
+                  <p className="text-redM md:w-1/2 font-medium">
                     Mother&#39;s Name:{" "}
                     <span className="text-whiteM font-normal">
                       {biodata.mname}
@@ -187,13 +191,13 @@ const BiodataDetails = () => {
                   </p>
                 </div>
                 <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
-                  <p className="text-blackM md:w-1/2 mb-2 md:mb-0 font-medium">
+                  <p className="text-redM md:w-1/2 mb-2 md:mb-0 font-medium">
                     Permanent Address:{" "}
                     <span className="text-whiteM font-normal">
                       {biodata.permanentDivision}
                     </span>
                   </p>
-                  <p className="text-blackM md:w-1/2 font-medium">
+                  <p className="text-redM md:w-1/2 font-medium">
                     Present Address:{" "}
                     <span className="text-whiteM font-normal">
                       {biodata.presentDivision}
@@ -201,13 +205,13 @@ const BiodataDetails = () => {
                   </p>
                 </div>
                 <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
-                  <p className="text-blackM md:w-1/2 mb-2 md:mb-0 font-medium">
+                  <p className="text-redM md:w-1/2 mb-2 md:mb-0 font-medium">
                     Race:{" "}
                     <span className="text-whiteM font-normal">
                       {biodata.race}
                     </span>
                   </p>
-                  <p className="text-blackM md:w-1/2 font-medium">
+                  <p className="text-redM md:w-1/2 font-medium">
                     Expected Partner Age:{" "}
                     <span className="text-whiteM font-normal">
                       {biodata.expectedPartnerAge} years old
@@ -215,13 +219,13 @@ const BiodataDetails = () => {
                   </p>
                 </div>
                 <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
-                  <p className="text-blackM md:w-1/2 mb-2 md:mb-0 font-medium">
+                  <p className="text-redM md:w-1/2 mb-2 md:mb-0 font-medium">
                     Expected Partner Height:{" "}
                     <span className="text-whiteM font-normal">
                       {biodata.expectedPartnerHeight} cm
                     </span>
                   </p>
-                  <p className="text-blackM md:w-1/2 font-medium">
+                  <p className="text-redM md:w-1/2 font-medium">
                     Expected Partner Weight:{" "}
                     <span className="text-whiteM font-normal">
                       {biodata.expectedPartnerWeight} kg
@@ -234,13 +238,13 @@ const BiodataDetails = () => {
                 request?.status === "approved" ? (
                   <>
                     <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
-                      <p className="text-blackM w-1/2 mb-2 md:mb-0 font-medium">
+                      <p className="text-redM w-1/2 mb-2 md:mb-0 font-medium">
                         Email:{" "}
                         <span className="text-whiteM font-normal">
                           {biodatap?.email}
                         </span>
                       </p>
-                      <p className="text-blackM w-1/2 font-medium">
+                      <p className="text-redM w-1/2 font-medium">
                         Phone:{" "}
                         <span className="text-whiteM font-normal">
                           {biodatap?.mobile}
