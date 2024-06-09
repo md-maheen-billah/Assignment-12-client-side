@@ -109,7 +109,7 @@ const FavouritesBiodata = () => {
                           scope="col"
                           className="py-3.5 text-center px-4 text-sm font-medium text-whiteM  rtl:text-center"
                         >
-                          <div className=" text-center gap-x-3">
+                          <div className=" w-36 mx-auto">
                             <span className="text-center">
                               Permanent Address
                             </span>
