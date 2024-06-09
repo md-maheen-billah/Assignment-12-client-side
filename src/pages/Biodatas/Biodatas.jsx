@@ -7,43 +7,52 @@ import FilterBySex from "./FilterBySex";
 import FilterByMin from "./FilterByMin";
 import FIlterByMax from "./FIlterByMax";
 import BiodataCard from "./BiodataCard";
+import { useQuery } from "@tanstack/react-query";
 
 const Biodatas = () => {
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const [sfilter, setSFilter] = useState("");
-  const [loading, setLoading] = useState(true);
   const [dfilter, setDFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [count, setCount] = useState(0);
-  const [jobs, setJobs] = useState([]);
+
   const [minValue, setMinValue] = useState(17);
   const [maxValue, setMaxValue] = useState(71);
-  useEffect(() => {
-    const getData = async () => {
-      const { data } = await axios(
-        `${
-          import.meta.env.VITE_API_URL
-        }/biodata-public?page=${currentPage}&size=${itemsPerPage}&sfilter=${sfilter}&dfilter=${dfilter}&minValue=${minValue}&maxValue=${maxValue}`
-      );
-      setJobs(data);
-      setLoading(false);
-    };
-    getData();
-  }, [currentPage, itemsPerPage, sfilter, dfilter, minValue, maxValue]);
 
-  useEffect(() => {
-    const getCount = async () => {
-      const { data } = await axios(
-        `${
-          import.meta.env.VITE_API_URL
-        }/biodata-public-count?sfilter=${sfilter}&dfilter=${dfilter}&minValue=${minValue}&maxValue=${maxValue}`
-      );
+  const fetchBiodatas = async () => {
+    const { data } = await axios.get(
+      `${
+        import.meta.env.VITE_API_URL
+      }/biodata-public?page=${currentPage}&size=${itemsPerPage}&sfilter=${sfilter}&dfilter=${dfilter}&minValue=${minValue}&maxValue=${maxValue}`
+    );
+    return data;
+  };
 
-      setCount(data.count);
-      setLoading(false);
-    };
-    getCount();
-  }, [sfilter, dfilter, minValue, maxValue]);
+  const fetchCount = async () => {
+    const { data } = await axios.get(
+      `${
+        import.meta.env.VITE_API_URL
+      }/biodata-public-count?sfilter=${sfilter}&dfilter=${dfilter}&minValue=${minValue}&maxValue=${maxValue}`
+    );
+    return data.count;
+  };
+
+  const { data: jobs = [], isLoading: jobsLoading } = useQuery({
+    queryKey: [
+      "jobs",
+      currentPage,
+      itemsPerPage,
+      sfilter,
+      dfilter,
+      minValue,
+      maxValue,
+    ],
+    queryFn: fetchBiodatas,
+  });
+
+  const { data: count = 0, isLoading: countLoading } = useQuery({
+    queryKey: ["count", sfilter, dfilter, minValue, maxValue],
+    queryFn: fetchCount,
+  });
 
   const numberOfPages = Math.ceil(count / itemsPerPage);
   const pages = [...Array(numberOfPages).keys()].map((element) => element + 1);
@@ -65,9 +74,10 @@ const Biodatas = () => {
 
   const numberOptions = Array.from({ length: 53 }, (_, i) => i + 18);
 
+  if (jobsLoading || countLoading) return <LoadingSpinner />;
   return (
     <div>
-      {(loading && <LoadingSpinner />) || (
+      {((jobsLoading || countLoading) && <LoadingSpinner />) || (
         <div>
           <div
             style={{

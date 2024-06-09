@@ -16,8 +16,8 @@ const Navigation = () => {
 
   const getLinkClasses = (path) =>
     location.pathname === path
-      ? "md:text-blackM text-whiteM lg:text-base rounded-md md:rounded-none lg:border-b-4 md:border-blackM border-black bg-black md:bg-reddM"
-      : "text-whiteM lg:text-base hover:text-blue-400 lg:border-b-4 border-reddM";
+      ? "md:text-blackM text-whiteM md:text-base rounded-md md:rounded-none md:border-b-4 md:border-blackM border-black bg-black md:bg-reddM"
+      : "text-whiteM md:text-base hover:text-blue-400 lg:border-b-4 border-reddM";
 
   return (
     <div>
