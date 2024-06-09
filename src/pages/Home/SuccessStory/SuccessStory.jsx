@@ -14,7 +14,7 @@ const SuccessStory = () => {
   });
   console.log(gallery);
   return (
-    <div>
+    <div className="lg:mb-10">
       <SectionTitle
         subHeading={
           "Discover heartwarming success stories from our members, showcasing real connections and lifelong partnerships forged through our platform."

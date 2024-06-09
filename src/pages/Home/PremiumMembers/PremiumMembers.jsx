@@ -4,11 +4,12 @@ import MemberCard from "./MemberCard";
 import { useState } from "react";
 import SectionTitle from "../../../components/SectionTitle";
 import "../../../assets/styleb.css";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const PremiumMembers = () => {
   const axiosSecure = useAxiosSecure();
   const [sort, setSort] = useState("");
-  const { data: pusers = [] } = useQuery({
+  const { data: pusers = [], isLoading } = useQuery({
     queryKey: ["pusers", sort],
     queryFn: async () => {
       const { data } = await axiosSecure(`/users-premium?sort=${sort}`);
@@ -16,8 +17,9 @@ const PremiumMembers = () => {
     },
   });
   console.log(pusers);
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
   return (
-    <div className="mb-20">
+    <div className="mb-8 lg:mb-20">
       <SectionTitle
         subHeading={
           "Access a curated list of premium profiles tailored to your preferences, ensuring the highest quality connections."

@@ -81,12 +81,12 @@ const Biodatas = () => {
             </div>
           </div>
           <div className="max-w-[1280px] mx-auto">
-            <div className="md:flex md:justify-evenly gap-10 mt-10">
+            <div className="md:flex md:justify-evenly px-4 gap-10 mt-4 md:mt-10">
               <div>
                 <h2 className="text-xl mb-4 text-center text-whiteM">
                   Filter Options
                 </h2>
-                <div className="space-y-2 mb-10">
+                <div className="space-y-2 mb-10 max-w-[285px] mx-auto">
                   <FilterByDivision
                     dfilter={dfilter}
                     setCurrentPage={setCurrentPage}
@@ -110,7 +110,16 @@ const Biodatas = () => {
                 </div>
               </div>
               <div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-20">
+                {jobs.length < 1 && (
+                  <div className="lg:mt-24 lg:mb-28 mt-8 mb-8 ">
+                    <div className="flex justify-center">
+                      <h1 className="text-4xl dark:text-[#f9a06f]  text-redM text-center">
+                        No Favorites Found!
+                      </h1>
+                    </div>
+                  </div>
+                )}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                   {jobs.map((member, idx) => (
                     <BiodataCard member={member} key={idx}></BiodataCard>
                   ))}

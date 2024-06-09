@@ -128,7 +128,7 @@ const BiodataDetails = () => {
                 />
               </div>
             </div>
-            <div className="flex justify-center lg:h-[315px] mt-6 lg:mt-0 border-redM border-2 bg-reddM p-4 rounded-md lg:rounded-none lg:rounded-r-md">
+            <div className="flex justify-center lg:h-[315px] mt-6 lg:mt-0 border-redM border-2 bg-reddM p-4 rounded-md lg:rounded-none lg:rounded-r-md px-2">
               <div className="space-y-2">
                 <div className="md:flex justify-between w-full md:w-[600px] mx-auto">
                   <p className="text-blackM font-medium mb-2 md:mb-0 md:w-1/2">

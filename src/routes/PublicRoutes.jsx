@@ -22,10 +22,12 @@ import BiodataDetails from "../pages/BiodataDetails/BiodataDetails";
 import Payment from "../pages/Dashboard/Pages/Payment/Payment";
 import GotMarried from "../pages/Dashboard/Pages/GotMarried/GotMarried";
 import SuccessDash from "../pages/Dashboard/Pages/SuccessDash/SuccessDash";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <ErrorPage></ErrorPage>,
     element: <Root></Root>,
     children: [
       {

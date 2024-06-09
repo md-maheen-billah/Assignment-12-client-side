@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const BiodataCard = ({ member }) => {
   return (
     <div>
-      <div className="max-w-xs mx-auto rounded-md shadow-md">
+      <div className="max-w-[285px] mx-auto rounded-md shadow-md">
         <div className="flex flex-col justify-between px-6 py-4 space-y-6 bg-reddM">
           <div className="space-y-2">
             <div className="flex items-center gap-2 mb-6">
@@ -30,7 +30,7 @@ const BiodataCard = ({ member }) => {
             </div>
             <div className="text-whiteM flex items-center gap-2">
               <FaBriefcase />
-              {member.occupation}
+              <p className="truncate max-w-52">{member.occupation}</p>
             </div>
           </div>
           <div className="flex justify-center">

@@ -22,9 +22,9 @@ const SuccessCounter = () => {
         }
         heading={"Success Counter"}
       ></SectionTitle>
-      <section className="p-6 my-6">
+      <section className="px-6 py-1 mb-5">
         <div className="container grid grid-cols-1 gap-6 mx-auto sm:grid-cols-2 xl:grid-cols-4">
-          <div className="flex p-4 space-x-4 rounded-lg md:space-x-6 text-reddM">
+          <div className="flex p-4 space-x-4 rounded-lg md:space-x-6 text-blackM bg-reddM">
             <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4 dark:bg-default-600">
               <FaPeopleGroup className="text-5xl" />
             </div>
@@ -35,7 +35,7 @@ const SuccessCounter = () => {
               <p className="capitalize">Total Biodatas</p>
             </div>
           </div>
-          <div className="flex p-4 space-x-4 rounded-lg md:space-x-6 text-reddM">
+          <div className="flex p-4 space-x-4 rounded-lg md:space-x-6 text-blackM bg-reddM ">
             <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4 dark:bg-default-600">
               <BiFemale className="text-5xl" />
             </div>
@@ -46,7 +46,7 @@ const SuccessCounter = () => {
               <p className="capitalize">Female Biodatas</p>
             </div>
           </div>
-          <div className="flex p-4 space-x-4 rounded-lg md:space-x-6 text-reddM">
+          <div className="flex p-4 space-x-4 rounded-lg md:space-x-6 text-blackM bg-reddM">
             <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4 dark:bg-default-600">
               <BiMale className="text-5xl" />
             </div>
@@ -57,7 +57,7 @@ const SuccessCounter = () => {
               <p className="capitalize">Male Biodatas</p>
             </div>
           </div>
-          <div className="flex p-4 space-x-4 rounded-lg md:space-x-6 text-reddM">
+          <div className="flex p-4 space-x-4 rounded-lg md:space-x-6 text-blackM bg-reddM">
             <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4 dark:bg-default-600">
               <FaPeoplePulling className="text-5xl" />
             </div>
