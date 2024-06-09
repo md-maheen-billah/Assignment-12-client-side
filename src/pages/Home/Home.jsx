@@ -5,6 +5,7 @@ import PremiumMembers from "./PremiumMembers/PremiumMembers";
 import SuccessCounter from "./SuccessCounter/SuccessCounter";
 import SuccessStory from "./SuccessStory/SuccessStory";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import HowItWorks from "./HowItWorks/HowItWorks";
 
 const Home = () => {
   const axiosSecure = useAxiosSecure();
@@ -21,6 +22,7 @@ const Home = () => {
       <Banner></Banner>
       <div className="max-w-[1280px] mx-auto px-2">
         <PremiumMembers></PremiumMembers>
+        <HowItWorks></HowItWorks>
         <SuccessCounter></SuccessCounter>
         <SuccessStory></SuccessStory>
       </div>
