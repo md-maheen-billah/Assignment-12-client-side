@@ -3,7 +3,7 @@ import "../Footer/footer.css";
 const Footer = () => {
   return (
     <div>
-      <footer className="footer foote lg:mt-6 mt-2 footer-center p-4 bg-reddM text-whiteM">
+      <footer className="footer foote mt-6 footer-center p-4 bg-reddM text-whiteM">
         <aside>
           <h2 className="text-center text-2xl font-bold mt-2 mb-2">
             Destined <span className="text-blackM">Affinity</span>{" "}

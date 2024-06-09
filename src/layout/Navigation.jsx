@@ -48,11 +48,7 @@ const Navigation = () => {
                     {user.email}
                   </span>
                 </Dropdown.Header>
-                <Dropdown.Item>Earnings</Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item onClick={() => signOut()}>
-                  Sign out
-                </Dropdown.Item>
+                <Dropdown.Item onClick={() => signOut()}>Log Out</Dropdown.Item>
               </Dropdown>
             </div>
           ) : (
