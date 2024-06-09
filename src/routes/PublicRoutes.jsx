@@ -21,6 +21,7 @@ import ContactRequests from "../pages/Dashboard/Pages/ContactRequests/ContactReq
 import BiodataDetails from "../pages/BiodataDetails/BiodataDetails";
 import Payment from "../pages/Dashboard/Pages/Payment/Payment";
 import GotMarried from "../pages/Dashboard/Pages/GotMarried/GotMarried";
+import SuccessDash from "../pages/Dashboard/Pages/SuccessDash/SuccessDash";
 
 export const router = createBrowserRouter([
   {
@@ -163,6 +164,16 @@ export const router = createBrowserRouter([
           <PrivateRoute>
             <AdminRoute>
               <ContactRequests></ContactRequests>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "success-story",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <SuccessDash></SuccessDash>
             </AdminRoute>
           </PrivateRoute>
         ),

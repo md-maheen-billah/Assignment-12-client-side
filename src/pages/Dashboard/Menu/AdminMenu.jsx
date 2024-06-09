@@ -5,6 +5,7 @@ import {
   MdPermContactCalendar,
   MdWorkspacePremium,
 } from "react-icons/md";
+import { FaPeoplePulling } from "react-icons/fa6";
 
 const AdminMenu = ({ handleToggle }) => {
   return (
@@ -32,6 +33,12 @@ const AdminMenu = ({ handleToggle }) => {
         icon={MdPermContactCalendar}
         label="Contact Requests"
         address="contact-requests"
+      />
+      <MenuItem
+        onClick={handleToggle}
+        icon={FaPeoplePulling}
+        label="Success Story"
+        address="success-story"
       />
     </>
   );
