@@ -4,7 +4,6 @@ import { FaCartShopping, FaPeopleGroup } from "react-icons/fa6";
 import { BiFemale, BiMale } from "react-icons/bi";
 import { FaGrinStars } from "react-icons/fa";
 import { Cell, PieChart, Pie, Legend, ResponsiveContainer } from "recharts";
-import { Tooltip } from "flowbite-react";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
 
@@ -134,7 +133,6 @@ const AdminDashboard = () => {
                 ))}
               </Pie>
               <Legend></Legend>
-              <Tooltip />
             </PieChart>
           </ResponsiveContainer>
         </div>

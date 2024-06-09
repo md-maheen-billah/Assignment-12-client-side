@@ -20,6 +20,7 @@ import PremiumRequests from "../pages/Dashboard/Pages/PremiumRequests/PremiumReq
 import ContactRequests from "../pages/Dashboard/Pages/ContactRequests/ContactRequests";
 import BiodataDetails from "../pages/BiodataDetails/BiodataDetails";
 import Payment from "../pages/Dashboard/Pages/Payment/Payment";
+import GotMarried from "../pages/Dashboard/Pages/GotMarried/GotMarried";
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +83,16 @@ export const router = createBrowserRouter([
           <PrivateRoute>
             <UserRoute>
               <EditBiodata></EditBiodata>
+            </UserRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "got-married",
+        element: (
+          <PrivateRoute>
+            <UserRoute>
+              <GotMarried></GotMarried>
             </UserRoute>
           </PrivateRoute>
         ),
