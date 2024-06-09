@@ -1,4 +1,10 @@
+import toast from "react-hot-toast";
+
 const ContatcUs = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    toast.success("Sent Email");
+  };
   return (
     <div>
       <div className="grid max-w-screen-xl text-reddM grid-cols-1 gap-8 px-8 py-8 lg:py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 ">
@@ -19,7 +25,7 @@ const ContatcUs = () => {
             />
           </div>
         </div>
-        <form noValidate="" className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label htmlFor="name" className="text-sm text-whiteM">
               Full name
@@ -27,6 +33,7 @@ const ContatcUs = () => {
             <input
               id="name"
               type="text"
+              required
               placeholder="Enter Full Name"
               className="w-full p-3 rounded text-whiteM focus:ring-redM selection:bg-black border-reddM focus:border-redM focus:shadow-outline  focus:shadow-outline bg-reddM"
             />
@@ -38,6 +45,7 @@ const ContatcUs = () => {
             <input
               id="email"
               type="email"
+              required
               placeholder="Enter Email"
               className="w-full p-3 rounded text-whiteM focus:ring-redM selection:bg-black border-reddM focus:border-redM focus:shadow-outline  focus:shadow-outline bg-reddM"
             />
@@ -49,6 +57,7 @@ const ContatcUs = () => {
             <textarea
               id="message"
               rows="3"
+              required
               placeholder="Leave us a message"
               className="w-full p-3 rounded text-whiteM focus:ring-redM selection:bg-black border-reddM focus:border-redM focus:shadow-outline  focus:shadow-outline bg-reddM"
             ></textarea>
