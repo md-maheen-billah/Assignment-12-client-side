@@ -2,11 +2,16 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../../../../components/LoadingSpinner";
 
 const PremiumRequests = () => {
   const axiosSecure = useAxiosSecure();
   const status = "pending";
-  const { data: rusers = [], refetch } = useQuery({
+  const {
+    data: rusers = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["rusers"],
     queryFn: async () => {
       const { data } = await axiosSecure(`/users-status-pending/${status}`);
@@ -67,6 +72,7 @@ const PremiumRequests = () => {
       }
     });
   };
+  if (isLoading) return <LoadingSpinner />;
   return (
     <div>
       <div>

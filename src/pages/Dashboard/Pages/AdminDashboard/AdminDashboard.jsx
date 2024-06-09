@@ -4,13 +4,14 @@ import { FaCartShopping, FaPeopleGroup } from "react-icons/fa6";
 import { BiFemale, BiMale } from "react-icons/bi";
 import { FaGrinStars } from "react-icons/fa";
 import { Cell, PieChart, Pie, Legend, ResponsiveContainer } from "recharts";
+import LoadingSpinner from "../../../../components/LoadingSpinner";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
 
 const AdminDashboard = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: admind = {} } = useQuery({
+  const { data: admind = {}, isLoading } = useQuery({
     queryKey: ["admind"],
     queryFn: async () => {
       const { data } = await axiosSecure(`/admin-dashboard`);
@@ -31,6 +32,7 @@ const AdminDashboard = () => {
 
     return { name: nameMap[key] || key, value };
   });
+  if (isLoading) return <LoadingSpinner />;
   return (
     <div>
       <div>
