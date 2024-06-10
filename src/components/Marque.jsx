@@ -19,7 +19,7 @@ const Marque = () => {
       <Marquee>
         <div className="flex evenly">
           {gallery.map((post, idx) => (
-            <Link key={idx} className="mr-24 text-[#1e1b4b]" to="/">
+            <div key={idx} className="mr-24 text-[#1e1b4b]" to="/">
               <div className="relative w-72 h-72 group">
                 <img
                   className="object-cover w-full h-72 rounded-lg"
@@ -62,7 +62,7 @@ const Marque = () => {
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </Marquee>

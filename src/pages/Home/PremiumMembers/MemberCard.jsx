@@ -15,7 +15,7 @@ const MemberCard = ({ member }) => {
           alt=""
           className="object-cover object-center w-80 rounded-t-md h-56 bg-redM"
         />
-        <div className="flex flex-col justify-between px-6 py-4 space-y-6 bg-reddM">
+        <div className="flex flex-col justify-between px-6 py-4 rounded-b-md space-y-6 bg-reddM">
           <div className="space-y-2">
             <h2 className="text-2xl  font-semibold tracking-wide">
               BIODATA ID{" "}

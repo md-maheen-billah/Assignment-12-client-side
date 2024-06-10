@@ -59,9 +59,9 @@ const AdminDashboard = () => {
       </div>
       <div
         data-aos="fade-up"
-        className=" mt-6 mb-10 lg:mb-20 max-w-[1280px] mx-auto px-2 lg:px-10"
+        className=" mt-1 mb-10 lg:mb-20 max-w-[1280px] mx-auto px-2 lg:px-10"
       >
-        <section className="p-6 my-6">
+        <section className="px-6 my-6">
           <div className="container grid grid-cols-1 gap-6 mx-auto sm:grid-cols-2 xl:grid-cols-5">
             <div className="flex p-4 space-x-4 rounded-lg md:space-x-6 text-reddM">
               <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4 dark:bg-default-600">
