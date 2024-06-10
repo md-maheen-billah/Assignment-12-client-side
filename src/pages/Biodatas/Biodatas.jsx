@@ -131,7 +131,7 @@ const Biodatas = () => {
                   <div className="lg:mt-24 lg:mb-28 mt-8 mb-8 ">
                     <div className="flex justify-center">
                       <h1 className="text-4xl dark:text-[#f9a06f]  text-redM text-center">
-                        No Favorites Found!
+                        No Biodatas Found!
                       </h1>
                     </div>
                   </div>
