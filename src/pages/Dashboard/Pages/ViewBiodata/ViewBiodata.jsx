@@ -4,6 +4,9 @@ import toast from "react-hot-toast";
 import useAuth from "../../../../hooks/useAuth";
 import useStatus from "../../../../hooks/useStatus";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
+import Aos from "aos";
 
 const ViewBiodata = () => {
   const [status, refetch, isLoading] = useStatus();
@@ -63,9 +66,15 @@ const ViewBiodata = () => {
       toast.error(err.message);
     }
   };
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   if (isLoading) return <LoadingSpinner />;
   return (
-    <div>
+    <div data-aos="fade-out">
+      <Helmet>
+        <title>Dashboard | View Biodata</title>
+      </Helmet>
       <div
         style={{
           backgroundImage: `linear-gradient(180deg,  rgba(0,0,0,0.1), rgba(0,0,0,1)), linear-gradient(360deg,  rgba(0,0,0,0.1), rgba(0,0,0,0.3)),  url('https://i.ibb.co/TvjSfjk/Untitled-design-4.jpg')`,
@@ -77,7 +86,10 @@ const ViewBiodata = () => {
           <h2 className="text-whiteM text-3xl font-bold">View Biodata</h2>
         </div>
       </div>
-      <div className="mt-6 md:mt-10 mb-10 lg:mb-20 max-w-[1280px] mx-auto px-2 lg:px-10">
+      <div
+        data-aos="fade-up"
+        className="mt-6 md:mt-10 mb-10 lg:mb-20 max-w-[1280px] mx-auto px-2 lg:px-10"
+      >
         <div className="flex justify-center">
           <div className="">
             <div className="flex justify-center">

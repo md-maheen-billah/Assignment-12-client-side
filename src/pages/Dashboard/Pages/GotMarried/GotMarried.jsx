@@ -7,6 +7,8 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { imageUpload } from "../../../../utils";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
+import Aos from "aos";
 
 const GotMarried = () => {
   const { user } = useAuth();
@@ -103,9 +105,20 @@ const GotMarried = () => {
       toast.error(err.message);
     }
   };
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
+
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   if (isLoading) return <LoadingSpinner />;
+
   return (
-    <div>
+    <div data-aos="fade-out">
+      <Helmet>
+        <title>Dashboard | Got Married</title>
+      </Helmet>
       <div
         style={{
           backgroundImage: `linear-gradient(180deg,  rgba(0,0,0,0.1), rgba(0,0,0,1)), linear-gradient(360deg,  rgba(0,0,0,0.1), rgba(0,0,0,0.3)),  url('https://i.ibb.co/TvjSfjk/Untitled-design-4.jpg')`,
@@ -117,7 +130,10 @@ const GotMarried = () => {
           <h2 className="text-whiteM text-3xl font-bold">Got Married</h2>
         </div>
       </div>
-      <div className="flex justify-center items-center min-h-screen">
+      <div
+        data-aos="fade-up"
+        className="flex justify-center items-center min-h-screen"
+      >
         <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10  text-whiteM">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-4">

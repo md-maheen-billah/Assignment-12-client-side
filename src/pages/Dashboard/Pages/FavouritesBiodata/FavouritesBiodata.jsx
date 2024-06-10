@@ -5,6 +5,9 @@ import toast from "react-hot-toast";
 import { FaTrash } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
+import Aos from "aos";
 
 const FavouritesBiodata = () => {
   const { user } = useAuth();
@@ -63,9 +66,15 @@ const FavouritesBiodata = () => {
   };
 
   console.log(favorites);
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   if (isLoading) return <LoadingSpinner />;
   return (
-    <div>
+    <div data-aos="fade-out">
+      <Helmet>
+        <title>Dashboard | Favorite Biodatas</title>
+      </Helmet>
       <div>
         <div
           style={{

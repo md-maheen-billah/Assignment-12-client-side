@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import MemberCard from "./MemberCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SectionTitle from "../../../components/SectionTitle";
 import "../../../assets/styleb.css";
 import LoadingSpinner from "../../../components/LoadingSpinner";
+import Aos from "aos";
 
 const PremiumMembers = () => {
   const axiosSecure = useAxiosSecure();
@@ -17,9 +18,12 @@ const PremiumMembers = () => {
     },
   });
   console.log(pusers);
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
   return (
-    <div className="mb-8 lg:mb-20">
+    <div data-aos="fade-up" className="mb-8 lg:mb-20">
       <SectionTitle
         subHeading={
           "Access a curated list of premium profiles tailored to your preferences, ensuring the highest quality connections."

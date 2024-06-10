@@ -3,6 +3,9 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
+import Aos from "aos";
 
 const ContactRequests = () => {
   const axiosSecure = useAxiosSecure();
@@ -71,9 +74,15 @@ const ContactRequests = () => {
       }
     });
   };
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   if (isLoading) return <LoadingSpinner />;
   return (
-    <div>
+    <div data-aos="fade-out">
+      <Helmet>
+        <title>Dashboard | Contact Requests</title>
+      </Helmet>
       <div>
         <div
           style={{

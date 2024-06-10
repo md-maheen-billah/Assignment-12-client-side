@@ -3,6 +3,9 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 import LoadingSpinner from "../../../../components/LoadingSpinner";
 import SuccessCard from "./SuccessCard";
+import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
+import Aos from "aos";
 
 const SuccessDash = () => {
   const axiosSecure = useAxiosSecure();
@@ -16,9 +19,15 @@ const SuccessDash = () => {
   });
 
   console.log(gallery);
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   if (isLoading) return <LoadingSpinner />;
   return (
-    <div>
+    <div data-aos="fade-out">
+      <Helmet>
+        <title>Dashboard | Success Stories</title>
+      </Helmet>
       <div>
         <div
           style={{

@@ -2,8 +2,13 @@ import { BsFillPeopleFill } from "react-icons/bs";
 import { RiFileEditFill } from "react-icons/ri";
 import { TbUserStar } from "react-icons/tb";
 import SectionTitle from "../../../components/SectionTitle";
+import { useEffect } from "react";
+import Aos from "aos";
 
 const HowItWorks = () => {
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   return (
     <div data-aos="fade-up">
       <div>

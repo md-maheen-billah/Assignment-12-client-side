@@ -1,3 +1,6 @@
+import Aos from "aos";
+import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
 
 const ContatcUs = () => {
@@ -5,9 +8,18 @@ const ContatcUs = () => {
     e.preventDefault();
     toast.success("Sent Email");
   };
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   return (
-    <div>
-      <div className="grid max-w-screen-xl text-reddM grid-cols-1 gap-8 px-8 py-8 lg:py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 ">
+    <div data-aos="fade-out">
+      <Helmet>
+        <title>Contact Us</title>
+      </Helmet>
+      <div
+        data-aos="fade-up"
+        className="grid max-w-screen-xl text-reddM grid-cols-1 gap-8 px-8 py-8 lg:py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 "
+      >
         <div className="flex flex-col justify-between">
           <div className="space-y-2 text-center">
             <h2 className="text-4xl font-bold text-whiteM leading-tight lg:text-5xl">

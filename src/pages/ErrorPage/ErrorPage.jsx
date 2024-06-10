@@ -1,6 +1,11 @@
+import { Helmet } from "react-helmet-async";
+
 const ErrorPage = () => {
   return (
     <section className="flex items-center h-svh p-16 bg-blackM">
+      <Helmet>
+        <title>Error Page</title>
+      </Helmet>
       <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
         <div className="max-w-md text-center">
           <h2 className="mb-8 font-extrabold text-9xl text-reddM">

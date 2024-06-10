@@ -3,6 +3,8 @@ import useAxiosCommon from "../../../hooks/useAxiosCommon";
 import Marque from "../../../components/Marque";
 import SectionTitle from "../../../components/SectionTitle";
 import LoadingSpinner from "../../../components/LoadingSpinner";
+import { useEffect } from "react";
+import Aos from "aos";
 
 const SuccessStory = () => {
   const axiosCommon = useAxiosCommon();
@@ -14,9 +16,12 @@ const SuccessStory = () => {
     },
   });
   console.log(gallery);
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   if (isLoading) return <LoadingSpinner />;
   return (
-    <div className="lg:mb-10">
+    <div data-aos="fade-up" className="lg:mb-10">
       <SectionTitle
         subHeading={
           "Discover heartwarming success stories from our members, showcasing real connections and lifelong partnerships forged through our platform."

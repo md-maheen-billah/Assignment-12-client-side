@@ -1,5 +1,4 @@
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import FilterByDivision from "./FilterByDivision";
@@ -8,6 +7,8 @@ import FilterByMin from "./FilterByMin";
 import FIlterByMax from "./FIlterByMax";
 import BiodataCard from "./BiodataCard";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
+import Aos from "aos";
 
 const Biodatas = () => {
   const [itemsPerPage, setItemsPerPage] = useState(6);
@@ -74,11 +75,17 @@ const Biodatas = () => {
 
   const numberOptions = Array.from({ length: 53 }, (_, i) => i + 18);
 
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   if (jobsLoading || countLoading) return <LoadingSpinner />;
   return (
-    <div>
+    <div data-aos="fade-out">
       {((jobsLoading || countLoading) && <LoadingSpinner />) || (
         <div>
+          <Helmet>
+            <title>Biodatas</title>
+          </Helmet>
           <div
             style={{
               backgroundImage: `linear-gradient(180deg,  rgba(0,0,0,0.1), rgba(0,0,0,1)), linear-gradient(360deg,  rgba(0,0,0,0.1), rgba(0,0,0,0.3)),  url('https://i.ibb.co/TvjSfjk/Untitled-design-4.jpg')`,
@@ -90,7 +97,7 @@ const Biodatas = () => {
               <h2 className="text-whiteM text-3xl font-bold">Biodatas</h2>
             </div>
           </div>
-          <div className="max-w-[1280px] mx-auto">
+          <div data-aos="fade-up" className="max-w-[1280px] mx-auto">
             <div className="md:flex md:justify-evenly px-4 gap-10 mt-4 md:mt-10">
               <div>
                 <h2 className="text-xl mb-4 text-center text-whiteM">

@@ -1,10 +1,15 @@
+import Aos from "aos";
+import { useEffect } from "react";
 import { FaBriefcase, FaHourglassEnd, FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const MemberCard = ({ member }) => {
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   return (
-    <div>
-      <div className="max-w-xs mx-auto rounded-md shadow-md">
+    <div data-aos="fade-up">
+      <div className="max-w-xs mx-auto lg:hover:scale-105 transition rounded-md shadow-gray-800 shadow-md">
         <img
           src={member.image}
           alt=""

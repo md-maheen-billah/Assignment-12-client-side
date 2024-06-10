@@ -3,6 +3,9 @@ import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import RequestContactInfo from "./RequestContactInfo";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
+import Aos from "aos";
+import { useEffect } from "react";
 
 const RequestContact = () => {
   const { user } = useAuth();
@@ -21,9 +24,15 @@ const RequestContact = () => {
     },
   });
   console.log(requests);
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   if (isLoading) return <LoadingSpinner />;
   return (
-    <div>
+    <div data-aos="fade-out">
+      <Helmet>
+        <title>Dashboard | My Contact Request</title>
+      </Helmet>
       <div>
         <div
           style={{

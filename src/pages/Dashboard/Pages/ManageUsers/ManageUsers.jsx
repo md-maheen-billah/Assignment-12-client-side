@@ -1,9 +1,11 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
+import Aos from "aos";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -139,11 +141,16 @@ const ManageUsers = () => {
       }
     });
   };
-
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div>
+    <div data-aos="fade-out">
+      <Helmet>
+        <title>Dashboard | Manage Users</title>
+      </Helmet>
       <div>
         <div
           style={{

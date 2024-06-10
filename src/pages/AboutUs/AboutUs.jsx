@@ -1,8 +1,21 @@
+import Aos from "aos";
+import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
+
 const AboutUs = () => {
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   return (
-    <div>
+    <div data-aos="fade-out">
+      <Helmet>
+        <title>About Us</title>
+      </Helmet>
       <section className="dark:bg-gray-100 mt-4 dark:text-gray-800">
-        <div className="container text-reddM flex flex-col-reverse mx-auto lg:flex-row">
+        <div
+          data-aos="fade-up"
+          className="container text-reddM flex flex-col-reverse mx-auto lg:flex-row"
+        >
           <div className="flex flex-col px-6 py-8 space-y-6 rounded-sm sm:p-8 lg:p-12 lg:w-1/2 xl:w-2/5 dark:bg-default-600 dark:text-gray-50">
             <div className="flex space-x-2 sm:space-x-4">
               <svg
@@ -84,7 +97,7 @@ const AboutUs = () => {
           <div className="lg:w-1/2 xl:w-3/5 dark:bg-gray-100">
             <div className="flex items-center justify-center p-4 md:p-8 lg:p-12">
               <img
-                src="https://i.ibb.co/qDS9F1j/DA-1.jpg"
+                src="https://i.ibb.co/q5RkQZJ/DA-2.jpg"
                 alt=""
                 className="rounded-lg shadow-lg dark:bg-gray-500 aspect-video sm:min-h-96"
               />

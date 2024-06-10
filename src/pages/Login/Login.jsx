@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { useEffect } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Aos from "aos";
 
 const Login = () => {
   const axiosSecure = useAxiosSecure();
@@ -85,9 +86,15 @@ const Login = () => {
       setLoading(false);
     }
   };
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
 
   return (
-    <div className="flex justify-center items-center mt-4 mb-6 px-2">
+    <div
+      data-aos="fade-up"
+      className="flex justify-center items-center mt-4 mb-6 px-2"
+    >
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10  text-whiteM">
         <div className="mb-6 text-center">
           <h1 className="my-3 text-4xl font-bold ">LOG IN</h1>

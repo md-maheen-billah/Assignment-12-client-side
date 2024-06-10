@@ -3,6 +3,8 @@ import { FaPeopleGroup, FaPeoplePulling } from "react-icons/fa6";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
 import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../components/SectionTitle";
+import { useEffect } from "react";
+import Aos from "aos";
 
 const SuccessCounter = () => {
   const axiosCommon = useAxiosCommon();
@@ -14,8 +16,11 @@ const SuccessCounter = () => {
       return data;
     },
   });
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   return (
-    <div>
+    <div data-aos="fade-up">
       <SectionTitle
         subHeading={
           "Discover the impact of our matrimonial services with our success counter. Join us in creating more beautiful stories!"

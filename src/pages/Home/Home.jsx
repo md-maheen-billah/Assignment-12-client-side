@@ -6,6 +6,9 @@ import SuccessCounter from "./SuccessCounter/SuccessCounter";
 import SuccessStory from "./SuccessStory/SuccessStory";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import HowItWorks from "./HowItWorks/HowItWorks";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+import Aos from "aos";
 
 const Home = () => {
   const axiosSecure = useAxiosSecure();
@@ -16,9 +19,12 @@ const Home = () => {
       return data;
     },
   });
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
   return (
-    <div>
+    <div data-aos="fade-out">
       <Banner></Banner>
       <div className="max-w-[1280px] mx-auto px-2">
         <PremiumMembers></PremiumMembers>

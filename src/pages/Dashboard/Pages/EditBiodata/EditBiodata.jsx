@@ -7,6 +7,8 @@ import toast from "react-hot-toast";
 import { imageUpload } from "../../../../utils";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
 import "../../../../assets/styleb.css";
+import { Helmet } from "react-helmet-async";
+import Aos from "aos";
 
 const EditBiodata = () => {
   const { user, updateUserProfile } = useAuth();
@@ -268,9 +270,15 @@ const EditBiodata = () => {
       toast.error(err.message);
     }
   };
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   if (isLoading) return <LoadingSpinner />;
   return (
-    <div>
+    <div data-aos="fade-out">
+      <Helmet>
+        <title>Dashboard | Edit Biodata</title>
+      </Helmet>
       <div>
         <div
           style={{

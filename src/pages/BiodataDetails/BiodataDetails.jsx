@@ -9,6 +9,9 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { FaHeart } from "react-icons/fa6";
 import "react-tooltip/dist/react-tooltip.css";
+import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
+import Aos from "aos";
 
 const BiodataDetails = () => {
   const { user } = useAuth();
@@ -88,10 +91,16 @@ const BiodataDetails = () => {
       toast.error("Already Added to Favorites");
     }
   };
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
 
   if (isLoading) return <LoadingSpinner />;
   return (
-    <div>
+    <div data-aos="fade-out">
+      <Helmet>
+        <title>Biodata Profile</title>
+      </Helmet>
       <div
         style={{
           backgroundImage: `linear-gradient(180deg,  rgba(0,0,0,0.1), rgba(0,0,0,1)), linear-gradient(360deg,  rgba(0,0,0,0.1), rgba(0,0,0,0.3)),  url('https://i.ibb.co/TvjSfjk/Untitled-design-4.jpg')`,
@@ -103,7 +112,7 @@ const BiodataDetails = () => {
           <h2 className="text-whiteM text-3xl font-bold">Biodata Profile</h2>
         </div>
       </div>
-      <div className="max-w-[1280px] mx-auto my-10 lg:my-20">
+      <div data-aos="fade-up" className="max-w-[1280px] mx-auto my-10 lg:my-20">
         <div className="flex justify-center">
           <div className="lg:flex items-center lg:gap-10">
             <div className="flex justify-center">

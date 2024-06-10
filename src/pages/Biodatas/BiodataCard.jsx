@@ -1,11 +1,15 @@
-import React from "react";
+import Aos from "aos";
+import { useEffect } from "react";
 import { FaBriefcase, FaHourglassEnd, FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const BiodataCard = ({ member }) => {
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   return (
-    <div>
-      <div className="max-w-[285px] mx-auto rounded-md shadow-md">
+    <div data-aos="fade-up">
+      <div className="max-w-[285px] mx-auto rounded-md lg:hover:scale-105 transition shadow-gray-800 shadow-md">
         <div className="flex flex-col justify-between px-6 py-4 space-y-6 bg-reddM">
           <div className="space-y-2">
             <div className="flex items-center gap-2 mb-6">

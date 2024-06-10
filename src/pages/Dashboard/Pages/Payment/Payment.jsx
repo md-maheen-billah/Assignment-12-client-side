@@ -5,6 +5,9 @@ import useAuth from "../../../../hooks/useAuth";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Checkout from "../../../../components/Checkout";
+import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
+import Aos from "aos";
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK);
 const Payment = () => {
@@ -25,8 +28,14 @@ const Payment = () => {
     email: user?.email,
     status,
   };
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   return (
-    <div>
+    <div data-aos="fade-out">
+      <Helmet>
+        <title>Payment</title>
+      </Helmet>
       <div
         style={{
           backgroundImage: `linear-gradient(180deg,  rgba(0,0,0,0.1), rgba(0,0,0,1)), linear-gradient(360deg,  rgba(0,0,0,0.1), rgba(0,0,0,0.3)),  url('https://i.ibb.co/TvjSfjk/Untitled-design-4.jpg')`,
@@ -38,7 +47,10 @@ const Payment = () => {
           <h2 className="text-whiteM text-3xl font-bold">Payment</h2>
         </div>
       </div>
-      <section className="pt-2 dark:bg-gray-100 dark:text-gray-900">
+      <section
+        data-aos="fade-up"
+        className="pt-2 dark:bg-gray-100 dark:text-gray-900"
+      >
         <div className="container mx-auto flex flex-col items-center justify-center max-w-lg p-4 lg:max-w-full sm:p-10 lg:flex-row">
           <div className="flex flex-col items-center justify-center flex-1 px-4 pt-4   dark:bg-gray-50">
             <span className="lg:text-3xl md:text-2xl text-reddM">

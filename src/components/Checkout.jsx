@@ -8,6 +8,7 @@ import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import Aos from "aos";
 
 const Checkout = ({ rdata }) => {
   const { user } = useAuth();
@@ -118,8 +119,12 @@ const Checkout = ({ rdata }) => {
     setProcessing(false);
   };
 
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form data-aos="fade-up" onSubmit={handleSubmit}>
       <CardElement
         options={{
           style: {
@@ -137,7 +142,7 @@ const Checkout = ({ rdata }) => {
         }}
       />
 
-      <div className="flex justify-center">
+      <div data-aos="fade-up" className="flex justify-center">
         <button
           disabled={!stripe || !clientSecret || processing}
           type="submit"

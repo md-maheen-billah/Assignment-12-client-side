@@ -5,6 +5,9 @@ import { BiFemale, BiMale } from "react-icons/bi";
 import { FaGrinStars } from "react-icons/fa";
 import { Cell, PieChart, Pie, Legend, ResponsiveContainer } from "recharts";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
+import Aos from "aos";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
 
@@ -32,9 +35,15 @@ const AdminDashboard = () => {
 
     return { name: nameMap[key] || key, value };
   });
+  useEffect(() => {
+    Aos.init({ duration: 700 });
+  }, []);
   if (isLoading) return <LoadingSpinner />;
   return (
-    <div>
+    <div data-aos="fade-out">
+      <Helmet>
+        <title>Dashboard | Admin Dashboard</title>
+      </Helmet>
       <div>
         <div
           style={{
