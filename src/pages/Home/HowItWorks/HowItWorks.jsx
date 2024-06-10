@@ -32,10 +32,10 @@ const HowItWorks = () => {
           <div className="flex justify-center items-center flex-col gap-1 ">
             <BsFillPeopleFill size={100} />
             <p className="font-semibold text-2xl text-center text-whiteM">
-              Connect
+              Search
             </p>
             <p className="font-light text-base w-56 text-center text-whiteM">
-              Select & Connect with Matches you like
+              Browse & Contact with Matches of your preference
             </p>
           </div>
           <div className=" flex justify-center items-center flex-col gap-1 ">
@@ -44,7 +44,7 @@ const HowItWorks = () => {
               Interact
             </p>
             <p className="font-light text-base w-56 text-center text-whiteM">
-              Become a Premium Member for perks
+              Become a Premium Member for perks extra
             </p>
           </div>
         </div>
