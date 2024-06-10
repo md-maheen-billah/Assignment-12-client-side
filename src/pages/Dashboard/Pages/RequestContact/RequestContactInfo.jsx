@@ -1,8 +1,9 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
-import { FaTrash, FaTrashCan } from "react-icons/fa6";
+import { FaTrash } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../../../../components/LoadingSpinner";
 
 const RequestContactInfo = ({ item, refetch }) => {
   const axiosSecure = useAxiosSecure();
@@ -60,6 +61,7 @@ const RequestContactInfo = ({ item, refetch }) => {
       }
     });
   };
+  if (isLoading) return <LoadingSpinner />;
   return (
     <tr>
       <td className="px-4 py-4 text-sm text-center text-blackM  whitespace-nowrap">

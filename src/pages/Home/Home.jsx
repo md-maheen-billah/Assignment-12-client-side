@@ -22,6 +22,7 @@ const Home = () => {
   useEffect(() => {
     Aos.init({ duration: 700 });
   }, []);
+  console.log(pusers);
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
   return (
     <div data-aos="fade-out">
