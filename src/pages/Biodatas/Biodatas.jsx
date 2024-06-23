@@ -9,12 +9,16 @@ import BiodataCard from "./BiodataCard";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import Aos from "aos";
+import FilterByHMax from "./FilterByHMax";
+import FilterByHMin from "./FilterByHMin";
 
 const Biodatas = () => {
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const [sfilter, setSFilter] = useState("");
   const [dfilter, setDFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [minHeight, setMinHeight] = useState(137);
+  const [maxHeight, setMaxHeight] = useState(213);
 
   const [minValue, setMinValue] = useState(17);
   const [maxValue, setMaxValue] = useState(71);
@@ -23,7 +27,7 @@ const Biodatas = () => {
     const { data } = await axios.get(
       `${
         import.meta.env.VITE_API_URL
-      }/biodata-public?page=${currentPage}&size=${itemsPerPage}&sfilter=${sfilter}&dfilter=${dfilter}&minValue=${minValue}&maxValue=${maxValue}`
+      }/biodata-public?page=${currentPage}&size=${itemsPerPage}&sfilter=${sfilter}&dfilter=${dfilter}&minValue=${minValue}&maxValue=${maxValue}&maxHeight=${maxHeight}&minHeight=${minHeight}`
     );
     return data;
   };
@@ -32,7 +36,7 @@ const Biodatas = () => {
     const { data } = await axios.get(
       `${
         import.meta.env.VITE_API_URL
-      }/biodata-public-count?sfilter=${sfilter}&dfilter=${dfilter}&minValue=${minValue}&maxValue=${maxValue}`
+      }/biodata-public-count?sfilter=${sfilter}&dfilter=${dfilter}&minValue=${minValue}&maxValue=${maxValue}&maxHeight=${maxHeight}&minHeight=${minHeight}`
     );
     return data.count;
   };
@@ -46,12 +50,22 @@ const Biodatas = () => {
       dfilter,
       minValue,
       maxValue,
+      maxHeight,
+      minHeight,
     ],
     queryFn: fetchBiodatas,
   });
 
   const { data: count = 0, isLoading: countLoading } = useQuery({
-    queryKey: ["count", sfilter, dfilter, minValue, maxValue],
+    queryKey: [
+      "count",
+      sfilter,
+      dfilter,
+      minValue,
+      maxValue,
+      maxHeight,
+      minHeight,
+    ],
     queryFn: fetchCount,
   });
 
@@ -70,6 +84,21 @@ const Biodatas = () => {
 
   const handleMaxChange = (e) => {
     setMaxValue(parseInt(e.target.value));
+    setCurrentPage(1);
+  };
+
+  const heights = [];
+  for (let i = 137; i <= 213; i++) {
+    heights.push(i);
+  }
+
+  const handleMaxHeightChange = (e) => {
+    setMaxHeight(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleMinHeightChange = (e) => {
+    setMinHeight(e.target.value);
     setCurrentPage(1);
   };
 
@@ -124,6 +153,16 @@ const Biodatas = () => {
                     numberOptions={numberOptions}
                     maxValue={maxValue}
                   ></FIlterByMax>
+                  <FilterByHMin
+                    handleMinHeightChange={handleMinHeightChange}
+                    heights={heights}
+                    minHeight={minHeight}
+                  ></FilterByHMin>
+                  <FilterByHMax
+                    handleMaxHeightChange={handleMaxHeightChange}
+                    heights={heights}
+                    maxHeight={maxHeight}
+                  ></FilterByHMax>
                 </div>
               </div>
               <div>
