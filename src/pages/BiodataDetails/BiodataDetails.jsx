@@ -30,6 +30,15 @@ const BiodataDetails = () => {
   });
   console.log(biodata);
 
+  const { data: marriage = {} } = useQuery({
+    queryKey: ["marriage", id],
+    queryFn: async () => {
+      const { data } = await axiosSecure(`/marriage-done/${id}`);
+      return data;
+    },
+  });
+  console.log(marriage);
+
   const { data: access = {} } = useQuery({
     queryKey: ["access", user?.email],
     queryFn: async () => {
@@ -130,11 +139,20 @@ const BiodataDetails = () => {
                   />
                 </button>
 
-                <img
-                  className="lg:w-[235px] mb-8 lg:h-[235px] w-64 h-64 rounded-full   border-redM border-2"
-                  src={biodata.image}
-                  alt=""
-                />
+                <div className="relative">
+                  <img
+                    className="lg:w-[235px] mb-8 lg:h-[235px] w-64 h-64 rounded-full   border-redM border-2"
+                    src={biodata.image}
+                    alt=""
+                  />
+                  {marriage === "Married" && (
+                    <div className="">
+                      <p className="absolute text-6xl font-bold italic text-redM top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+                        Married
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
             <div
