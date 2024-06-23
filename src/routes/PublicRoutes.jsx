@@ -84,9 +84,7 @@ export const router = createBrowserRouter([
         path: "edit-biodata",
         element: (
           <PrivateRoute>
-            <UserRoute>
-              <EditBiodata></EditBiodata>
-            </UserRoute>
+            <EditBiodata></EditBiodata>
           </PrivateRoute>
         ),
       },
@@ -94,9 +92,7 @@ export const router = createBrowserRouter([
         path: "got-married",
         element: (
           <PrivateRoute>
-            <UserRoute>
-              <GotMarried></GotMarried>
-            </UserRoute>
+            <GotMarried></GotMarried>
           </PrivateRoute>
         ),
       },
@@ -104,9 +100,7 @@ export const router = createBrowserRouter([
         path: "view-biodata",
         element: (
           <PrivateRoute>
-            <UserRoute>
-              <ViewBiodata></ViewBiodata>
-            </UserRoute>
+            <ViewBiodata></ViewBiodata>
           </PrivateRoute>
         ),
       },
@@ -114,9 +108,7 @@ export const router = createBrowserRouter([
         path: "contact-request",
         element: (
           <PrivateRoute>
-            <UserRoute>
-              <RequestContact></RequestContact>
-            </UserRoute>
+            <RequestContact></RequestContact>
           </PrivateRoute>
         ),
       },
@@ -124,9 +116,7 @@ export const router = createBrowserRouter([
         path: "favourites-biodata",
         element: (
           <PrivateRoute>
-            <UserRoute>
-              <FavouritesBiodata></FavouritesBiodata>
-            </UserRoute>
+            <FavouritesBiodata></FavouritesBiodata>
           </PrivateRoute>
         ),
       },

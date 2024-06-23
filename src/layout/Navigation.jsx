@@ -96,8 +96,8 @@ const Navigation = () => {
               {role === "admin" ? (
                 <Navbar.Link
                   as={Link}
-                  to="/dashboard/admin-dashboard"
-                  className={getLinkClasses("/dashboard/admin-dashboard")}
+                  to="/dashboard/edit-biodata"
+                  className={getLinkClasses("/dashboard/edit-biodata")}
                 >
                   Dashboard
                 </Navbar.Link>

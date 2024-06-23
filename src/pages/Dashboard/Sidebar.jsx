@@ -7,8 +7,10 @@ import GuestMenu from "./Menu/GuestMenu";
 import AdminMenu from "./Menu/AdminMenu";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
+import ToggleBtn from "../../components/ToggleBtn";
 
 const Sidebar = () => {
+  const [toggle, setToggle] = useState(true);
   const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
   const [role, isLoading] = useRole();
@@ -16,6 +18,10 @@ const Sidebar = () => {
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
+  };
+
+  const toggleHandler = (event) => {
+    setToggle(event.target.checked);
   };
 
   return (
@@ -75,11 +81,20 @@ const Sidebar = () => {
           {/* Nav Items */}
           <div className="flex flex-col justify-between flex-1 mt-6">
             {/* Conditional toggle button here.. */}
+            {role === "admin" && (
+              <ToggleBtn toggleHandler={toggleHandler} toggle={toggle} />
+            )}
 
             {/*  Menu Items */}
             <nav>
               {role === "guest" && <GuestMenu handleToggle={handleToggle} />}
-              {role === "admin" && <AdminMenu handleToggle={handleToggle} />}
+              {role === "admin" ? (
+                toggle ? (
+                  <GuestMenu handleToggle={handleToggle} />
+                ) : (
+                  <AdminMenu handleToggle={handleToggle} />
+                )
+              ) : undefined}
             </nav>
           </div>
         </div>
